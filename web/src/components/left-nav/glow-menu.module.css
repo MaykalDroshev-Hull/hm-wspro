@@ -1,0 +1,89 @@
+.menu {
+  position: relative;
+  height: 100%;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  overflow: visible;
+}
+
+.cursorGlow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(180px 140px at var(--mx, -200px) var(--my, -200px), rgba(34, 211, 238, 0.18), transparent 60%);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.menu:hover .cursorGlow {
+  opacity: 1;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+  border-radius: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.itemGlow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(120px 100px at var(--mx, -200px) var(--my, -200px), var(--glowA, rgba(34, 211, 238, 0.3)), transparent 60%),
+    radial-gradient(40px 30px at 90% 50%, var(--glowB, rgba(167, 139, 250, 0.25)), transparent 60%);
+  filter: blur(14px);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.item:hover .itemGlow,
+.item:focus-within .itemGlow {
+  opacity: 1;
+}
+
+.ring {
+  pointer-events: none;
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  mask-composite: exclude;
+}
+
+.ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, var(--glowA, rgba(34, 211, 238, 0.5)), var(--glowB, rgba(167, 139, 250, 0.5)), var(--glowA, rgba(34, 211, 238, 0.5)));
+  filter: blur(6px) saturate(120%);
+  animation: spin 8s linear infinite;
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.item:hover .ring::before,
+.item:focus-within .ring::before {
+  opacity: 1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
