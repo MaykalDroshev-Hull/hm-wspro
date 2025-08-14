@@ -2,6 +2,7 @@ import type React from "react"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TranslationProvider } from "@/contexts/TranslationContext"
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 
@@ -25,6 +26,7 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </TranslationProvider>
+        <Analytics />
       </body>
     </html>
   )
