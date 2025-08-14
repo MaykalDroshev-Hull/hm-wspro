@@ -1,0 +1,157 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Full-Stack Developers",
+    "title": "H&M Website Provisioning",
+    "subtitle": "Bridging Code and Creativity",
+    "cta": "View Projects"
+  },
+  "about": {
+    "title": "About Us",
+    "intro": "Hi, We are Hristo and Michael, junior full-stack developers based in Bulgaria and United Kingdom with a background in Computer Science, Software Engineering, Telecommunications and a passion for building user-centric web applications.",
+    "learning": "We started learning to code in 2019, transitioning from general computer science to software development. After completing Bachelor's degree in our courses of study, We began working on real-world projects using Next.js and React.js.",
+    "specialization": "We specialize in full-stack development, crafting fast and easy-to-use web applications. We're currently working at many interesting projects, where we contribute to dynamic systems and continuously grow our skills.",
+    "hobbies": "Outside of coding, We enjoy being active, and we're exploring Artifical Intelligence to bring creativity into our projects.",
+    "skills": {
+      "webDev": "Web Development",
+      "webDevDesc": "Building fast and easy-to-use web applications with Next.js and React.js",
+      "fullStack": "Full Stack",
+      "fullStackDesc": "End-to-end solutions from database to frontend",
+      "design3D": "Mobile Applications",
+      "design3DDesc": "Expanding computer capabilities everywhere with dynamic Android applications"
+    }
+  },
+  "skills": {
+    "title": "Tech Stack",
+    "laravel": "PHP framework for web artisans",
+    "vuejs": "Progressive JavaScript framework",
+    "php": "Server-side scripting language",
+    "javascript": "Dynamic programming language",
+    "mysql": "Relational database management system",
+    "tailwind": "Utility-first CSS framework",
+    "restApis": "Building and consuming RESTful services",
+    "git": "Version control system",
+    "blender": "3D computer graphics software",
+    "stripe": "Payment processing platform for online businesses",
+    "typescript": "Typed JavaScript for better development",
+    "vercel": "Deployment and hosting platform for Next.js applications",
+    "csharp": "Microsoft's object-oriented programming language",
+    "java": "Cross-platform programming language",
+    "tsql": "SQL dialect for Microsoft SQL Server",
+    "supabase": "Open-source Firebase alternative"
+  },
+  "projects": {
+    "title": "Projects",
+    "hvac": {
+      "title": "15-viki-bg HVAC Platform",
+      "description": "Professional HVAC e-commerce platform with product management, order processing, installation scheduling, and administrative tools.",
+      "details": [
+        "Full-stack e-commerce platform for HVAC services",
+        "Product catalog with filtering and search functionality",
+        "Order management system with payment processing",
+        "Installation scheduling and customer inquiry management",
+        "Admin dashboard with analytics and CRUD operations",
+        "Multi-language support (Bulgarian/English)",
+        "Responsive design for all devices"
+      ]
+    },
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "Working on new exciting projects currently. More details coming soon!",
+      "tag": "In Development",
+      "details": ["New project details will be revealed soon"]
+    },
+    "scla": {
+      "title": "SCLA (Star City Living App)",
+      "description": "Resident management system for handling subscriptions, prepaid packages, and resident profiles.",
+      "details": [
+        "Built searchable and paginated tables using Laravel and Vue 3",
+        "Created Excel export features with filters by status (Active, Inactive, Rejected)",
+        "Implemented tabbed interfaces and reset logic for seamless UX"
+      ]
+    },
+    "synpitarn": {
+      "title": "Synpitarn Loan Management System",
+      "description": "Inherited and refactored legacy code to support modern queue jobs and bulk data processing.",
+      "details": [
+        "Created background jobs for Excel exports and SMS/notification handling",
+        "Enhanced the admin dashboard for better user control over loan applications"
+      ]
+    },
+    "password": {
+      "title": "Password Expiration & Security Flow",
+      "description": "Enforced a 90-day password expiration policy with scheduled email alerts.",
+      "details": [
+        "Set up password_changed_at tracking, login restrictions, and password reuse prevention",
+        "Created custom email notifications instead of Laravel's default notification system"
+      ]
+    },
+    "portfolio3d": {
+      "title": "3D Portfolio + Creative Designs",
+      "description": "Currently designing a 3D-themed dark portfolio with Blender models and glassmorphism UI.",
+      "details": [
+        "Exploring Three.js integration and 3D asset display in a web context"
+      ]
+    }
+  },
+  "timeline": {
+    "title": "Our Journey",
+    "milestones": {
+      "2019": {
+        "title": "Started Learning Web Development",
+        "description": "We started learning PHP, JavaScript, and web development fundamentals."
+      },
+      "2021": {
+        "title": "Internships at Software Companies and Obtaining Certificates",
+        "description": "We completed hands-on training at software companies and obtained certificates."
+      },
+      "2023": {
+        "title": "Completed Bachelor's Degree",
+        "description": "We completed our Bachelor's degree in Computer Science and Software Engineering."
+      },
+      "2024": {
+        "title": "Started Working on Real Projects",
+        "description": "We started working on real projects using Next.js and React.js."
+      },
+      "2025": {
+        "title": "Developed Our First Project - 15-viki-bg",
+        "description": "Our first project became reality - 15-viki-bg"
+      },
+      "present": {
+        "title": "Continuous Learning",
+        "description": "We are expanding our skills in Next.js, React.js, Supabase, Tailwind CSS and modern web development practices."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "sarah": {
+      "name": "Snezhana",
+      "role": "Co-Executive Director",
+      "company": "15-viki-bg",
+      "content": "Thanks to Hristo and Michael, I think we are on our way to doing something big and changing the way people view and use our services."
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "intro": "Have a project in mind or want to discuss a potential collaboration? Feel free to reach out using the contact form or through any of our social channels.",
+    "email": "hm.websiteprovisioning@gmail.com",
+    "location": "Bulgaria/United Kingdom",
+    "connectTitle": "Connect With Us",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send Message"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}
