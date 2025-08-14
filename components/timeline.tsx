@@ -7,27 +7,33 @@ export default function Timeline() {
   const milestones = [
     {
       id: 1,
-      year: "2022",
-      title: t("timeline.milestones.2022.title"),
-      description: t("timeline.milestones.2022.description"),
+      year: "2019",
+      title: t("timeline.milestones.2019.title"),
+      description: t("timeline.milestones.2019.description"),
     },
     {
       id: 2,
-      year: "2023",
-      title: t("timeline.milestones.2023.title"),
-      description: t("timeline.milestones.2023.description"),
+      year: "2021",
+      title: t("timeline.milestones.2021.title"),
+      description: t("timeline.milestones.2021.description"),
     },
     {
       id: 3,
       year: "2023",
-      title: t("timeline.milestones.2023_2.title"),
-      description: t("timeline.milestones.2023_2.description"),
+      title: t("timeline.milestones.2023.title"),
+      description: t("timeline.milestones.2023.description"),
     },
     {
       id: 4,
       year: "2024",
       title: t("timeline.milestones.2024.title"),
       description: t("timeline.milestones.2024.description"),
+    },
+    {
+      id: 5,
+      year: "2025",
+      title: t("timeline.milestones.2025.title"),
+      description: t("timeline.milestones.2025.description"),
     },
     {
       id: 6,

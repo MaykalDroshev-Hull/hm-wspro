@@ -39,9 +39,9 @@ export default function LanguageSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-56 bg-card border border-border rounded-lg shadow-lg z-50">
-          <div className="p-3 border-b border-border">
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+        <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-80 md:w-64 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl z-50">
+          <div className="p-3 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
               <Languages size={14} />
               <span>Detected: {isDetecting ? 'Detecting...' : detectedLanguage?.flag} {detectedLanguage?.nativeName}</span>
             </div>
@@ -52,26 +52,26 @@ export default function LanguageSwitcher() {
               <button
                 key={language.code}
                 onClick={() => switchLanguage(language.code)}
-                className={`w-full px-4 py-3 text-left hover:bg-muted transition-colors duration-200 flex items-center gap-3 ${
+                className={`w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 flex items-center gap-3 ${
                   locale === language.code 
-                    ? 'bg-muted text-foreground' 
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white' 
+                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
                 <span className="text-lg">{language.flag}</span>
                 <div className="flex flex-col items-start">
                   <span className="text-sm font-medium">{language.name}</span>
-                  <span className="text-xs text-muted-foreground">{language.nativeName}</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">{language.nativeName}</span>
                 </div>
                 
                 <div className="ml-auto flex items-center gap-2">
                   {detectedLocale === language.code && !isDetecting && (
-                    <span className="text-xs text-blue-500 bg-blue-50 px-2 py-1 rounded-full">
+                    <span className="text-xs text-blue-600 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 px-2 py-1 rounded-full">
                       Auto
                     </span>
                   )}
                   {locale === language.code && (
-                    <CheckCircle size={16} className="text-primary" />
+                    <CheckCircle size={16} className="text-blue-600 dark:text-blue-400" />
                   )}
                 </div>
               </button>
@@ -79,10 +79,10 @@ export default function LanguageSwitcher() {
           </div>
           
           {detectedLocale && detectedLocale !== locale && !isDetecting && (
-            <div className="p-3 border-t border-border bg-muted/30">
+            <div className="p-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
               <button
                 onClick={() => switchLanguage(detectedLocale)}
-                className="w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="w-full text-left text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
                 Switch to detected language ({detectedLanguage?.nativeName})
               </button>

@@ -38,9 +38,9 @@ export default function Navbar() {
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-background/90 backdrop-blur-lg border-b border-border">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+          <div className="container mx-auto px-4 py-4">
             <NavLinks mobile onClick={() => setIsMenuOpen(false)} />
-            <div className="flex justify-center items-center gap-4 pt-2">
+            <div className="flex justify-center items-center gap-4 pt-4 border-t border-border mt-4">
               <LanguageSwitcher />
               <ThemeToggle />
             </div>
