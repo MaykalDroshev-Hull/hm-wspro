@@ -2,7 +2,7 @@
 
 import type React from "react"
 import Link from "next/link"
-import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import { Mail } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 
 export default function Footer() {
