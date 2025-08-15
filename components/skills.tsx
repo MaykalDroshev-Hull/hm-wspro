@@ -7,7 +7,7 @@ import { Code2, Database, Layers, Palette, Server, Zap, Database as DatabaseIcon
 import { useTranslation } from "@/contexts/TranslationContext"
 
 export default function Skills() {
-  const { t } = useTranslation()
+  const { t, tString } = useTranslation()
 
   return (
     <section id="skills" className="py-20 bg-gradient-to-b from-muted to-background">
@@ -21,67 +21,67 @@ export default function Skills() {
             icon={<Code2 className="h-8 w-8" />}
             name="JavaScript"
             color="from-yellow-400 to-amber-400 dark:from-yellow-500 dark:to-amber-500"
-            description={t("skills.javascript")}
+            description={tString("skills.javascript")}
           />
           <SkillTile
             icon={<FileCode className="h-8 w-8" />}
             name="TypeScript"
             color="from-blue-400 to-indigo-400 dark:from-blue-500 dark:to-indigo-500"
-            description={t("skills.typescript")}
+            description={tString("skills.typescript")}
           />
           <SkillTile
             icon={<Zap className="h-8 w-8" />}
             name="Vercel"
             color="from-black to-gray-600 dark:from-white dark:to-gray-400"
-            description={t("skills.vercel")}
+            description={tString("skills.vercel")}
           />
           <SkillTile
             icon={<DatabaseIcon className="h-8 w-8" />}
             name="Supabase"
             color="from-green-400 to-emerald-400 dark:from-green-500 dark:to-emerald-500"
-            description={t("skills.supabase")}
+            description={tString("skills.supabase")}
           />
           <SkillTile
             icon={<CreditCard className="h-8 w-8" />}
             name="Stripe"
             color="from-indigo-400 to-purple-400 dark:from-indigo-500 dark:to-purple-500"
-            description={t("skills.stripe")}
+            description={tString("skills.stripe")}
           />
           <SkillTile
             icon={<Code2 className="h-8 w-8" />}
             name="C#"
             color="from-purple-400 to-violet-400 dark:from-purple-500 dark:to-violet-500"
-            description={t("skills.csharp")}
+            description={tString("skills.csharp")}
           />
           <SkillTile
             icon={<Globe2 className="h-8 w-8" />}
             name="Java"
             color="from-orange-400 to-red-400 dark:from-orange-500 dark:to-red-500"
-            description={t("skills.java")}
+            description={tString("skills.java")}
           />
           <SkillTile
             icon={<Database className="h-8 w-8" />}
             name="T-SQL"
             color="from-blue-400 to-cyan-400 dark:from-blue-500 dark:to-cyan-500"
-            description={t("skills.tsql")}
+            description={tString("skills.tsql")}
           />
           <SkillTile
             icon={<Layers className="h-8 w-8" />}
             name="Tailwind"
             color="from-cyan-400 to-blue-400 dark:from-cyan-500 dark:to-blue-500"
-            description={t("skills.tailwind")}
+            description={tString("skills.tailwind")}
           />
           <SkillTile
             icon={<Server className="h-8 w-8" />}
             name="REST APIs"
             color="from-purple-400 to-violet-400 dark:from-purple-500 dark:to-violet-500"
-            description={t("skills.restApis")}
+            description={tString("skills.restApis")}
           />
           <SkillTile
             icon={<Palette className="h-8 w-8" />}
             name="Blender"
             color="from-orange-400 to-red-400 dark:from-orange-500 dark:to-red-500"
-            description={t("skills.blender")}
+            description={tString("skills.blender")}
           />
         </div>
       </div>

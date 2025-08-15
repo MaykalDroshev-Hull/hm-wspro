@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
+import { TranslationLoader } from "./translation-loader"
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -146,30 +147,32 @@ export default function Hero() {
         role="presentation"
       />
       <div className="container mx-auto px-4 z-10 text-center">
-        <div 
-          className="inline-block mb-4 px-3 py-1 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 backdrop-blur-md border border-purple-300/40 dark:border-purple-500/20"
-          role="status"
-          aria-label="Professional badge"
-        >
-          <span className="text-sm font-medium text-muted-foreground">{t("hero.badge")}</span>
-        </div>
-        <h1 
-          id="hero-heading"
-          className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400"
-        >
-          {t("hero.title")}
-        </h1>
-        <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-muted-foreground">
-          {t("hero.subtitle")}
-        </p>
-        <Link
-          href="#projects"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 dark:from-purple-600 dark:to-blue-600 text-white font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(124,58,237,0.5)] hover:from-purple-400 hover:to-blue-400 dark:hover:from-purple-500 dark:hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
-          aria-label={`${t("hero.cta")} - Navigate to projects section`}
-        >
-          {t("hero.cta")}
-          <ArrowRight size={18} aria-hidden="true" />
-        </Link>
+        <TranslationLoader>
+          <div 
+            className="inline-block mb-4 px-3 py-1 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 backdrop-blur-md border border-purple-300/40 dark:border-purple-500/20"
+            role="status"
+            aria-label="Professional badge"
+          >
+            <span className="text-sm font-medium text-muted-foreground">{t("hero.badge")}</span>
+          </div>
+          <h1 
+            id="hero-heading"
+            className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400"
+          >
+            {t("hero.title")}
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-muted-foreground">
+            {t("hero.subtitle")}
+          </p>
+          <Link
+            href="#projects"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 dark:from-purple-600 dark:to-blue-600 text-white font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(124,58,237,0.5)] hover:from-purple-400 hover:to-blue-400 dark:hover:from-purple-500 dark:hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+            aria-label={`${t("hero.cta")} - Navigate to projects section`}
+          >
+            {t("hero.cta")}
+            <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </TranslationLoader>
       </div>
       
       {/* Skip to main content link for accessibility */}

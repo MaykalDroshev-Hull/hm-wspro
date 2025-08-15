@@ -26,8 +26,6 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
     return {}
   }
 
-  const localeInfo = getLocaleInfo(locale)
-  
   return {
     title: locale === 'en' ? 'Professional Web Development Services' : 'Професионални Уеб Разработки',
     description: locale === 'en' 
@@ -55,14 +53,11 @@ export default async function LocalePage({ params }: LocalePageProps) {
     notFound()
   }
 
-  // Get locale info for metadata or other uses
-  const localeInfo = getLocaleInfo(locale)
-  
   return (
     <>
       <SEOStructuredData locale={locale} />
       <PerformanceOptimizer locale={locale} />
-      <div className="min-h-screen bg-background text-foreground" lang={locale} dir={localeInfo.direction}>
+      <div className="min-h-screen bg-background text-foreground" lang={locale} dir={getLocaleInfo(locale).direction}>
         <Navbar />
         <main id="main-content" role="main" aria-label={locale === 'en' ? 'Main content' : 'Основно съдържание'}>
           <Hero />

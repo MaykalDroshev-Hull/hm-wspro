@@ -5,7 +5,7 @@ import { Code, Layers, Smartphone } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 
 export default function About() {
-  const { t } = useTranslation()
+  const { t, tString } = useTranslation()
 
   return (
     <section id="about" className="py-20 bg-gradient-to-b from-background to-muted">
@@ -65,18 +65,18 @@ export default function About() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
               <SkillCard
                 icon={<Code className="h-6 w-6 text-purple-500 dark:text-purple-400" />}
-                title={t("about.skills.webDev")}
-                description={t("about.skills.webDevDesc")}
+                title={tString("about.skills.webDev")}
+                description={tString("about.skills.webDevDesc")}
               />
               <SkillCard
                 icon={<Layers className="h-6 w-6 text-blue-500 dark:text-blue-400" />}
-                title={t("about.skills.fullStack")}
-                description={t("about.skills.fullStackDesc")}
+                title={tString("about.skills.fullStack")}
+                description={tString("about.skills.fullStackDesc")}
               />
               <SkillCard
                 icon={<Smartphone className="h-6 w-6 text-cyan-500 dark:text-cyan-400" />}
-                title={t("about.skills.design3D")}
-                description={t("about.skills.design3DDesc")}
+                title={tString("about.skills.design3D")}
+                description={tString("about.skills.design3DDesc")}
               />
             </div>
           </div>

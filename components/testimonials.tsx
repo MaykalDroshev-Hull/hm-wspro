@@ -6,17 +6,17 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 
 export default function Testimonials() {
-  const { t } = useTranslation()
+  const { t, tString } = useTranslation()
   const [activeIndex, setActiveIndex] = useState(0)
   const [autoplay, setAutoplay] = useState(true)
 
   const testimonials = [
     {
       id: 1,
-      name: t("testimonials.sarah.name"),
-      role: t("testimonials.sarah.role"),
-      company: t("testimonials.sarah.company"),
-      content: t("testimonials.sarah.content"),
+      name: tString("testimonials.sarah.name"),
+      role: tString("testimonials.sarah.role"),
+      company: tString("testimonials.sarah.company"),
+      content: tString("testimonials.sarah.content"),
       avatar: "/images/15-viki-bg-icon.png",
     }
   ]

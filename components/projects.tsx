@@ -12,7 +12,7 @@ interface Project {
 }
 
 export default function Projects() {
-  const { t } = useTranslation()
+  const { t, tString } = useTranslation()
 
   const projects = [
     {
@@ -28,7 +28,7 @@ export default function Projects() {
       titleKey: "projects.comingSoon.title",
       descriptionKey: "projects.comingSoon.description",
       image: "/images/projects-coming-soon.jpg",
-      tags: [t("projects.comingSoon.tag")],
+      tags: [tString("projects.comingSoon.tag")],
       detailsKey: "projects.comingSoon.details",
     },
   ]
@@ -51,7 +51,7 @@ export default function Projects() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const { t } = useTranslation()
+  const { t, tString } = useTranslation()
   
   // Get the details array from translations
   const details = t(project.detailsKey)
@@ -64,7 +64,7 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="relative h-48 overflow-hidden">
           <Image
             src={project.image || "/placeholder.svg"}
-            alt={t(project.titleKey)}
+            alt={tString(project.titleKey)}
             width={600}
             height={400}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -88,7 +88,7 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
 
           <ul className="mb-6 text-sm text-muted-foreground list-disc pl-5 space-y-1">
-            {detailsArray.map((detail: string, index: number) => (
+            {detailsArray.map((detail, index) => (
               <li key={index}>{detail}</li>
             ))}
           </ul>
