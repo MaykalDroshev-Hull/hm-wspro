@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://hm-wspro.com/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hm-wspro.com/en"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://hm-wspro.com/bg"/>
+  </url>
+  
+  <!-- English Locale -->
+  <url>
+    <loc>https://hm-wspro.com/en</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hm-wspro.com/en"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://hm-wspro.com/bg"/>
+  </url>
+  
+  <!-- Bulgarian Locale -->
+  <url>
+    <loc>https://hm-wspro.com/bg</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hm-wspro.com/en"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://hm-wspro.com/bg"/>
+  </url>
+  
+  <!-- About Section -->
+  <url>
+    <loc>https://hm-wspro.com/en#about</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Skills Section -->
+  <url>
+    <loc>https://hm-wspro.com/en#skills</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Projects Section -->
+  <url>
+    <loc>https://hm-wspro.com/en#projects</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Timeline Section -->
+  <url>
+    <loc>https://hm-wspro.com/en#timeline</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Testimonials Section -->
+  <url>
+    <loc>https://hm-wspro.com/en#testimonials</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Contact Section -->
+  <url>
+    <loc>https://hm-wspro.com/en#contact</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+</urlset>
