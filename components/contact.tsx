@@ -5,9 +5,11 @@ import type React from "react"
 import { useState } from "react"
 import { Github, Linkedin, Mail, MapPin, Send, Facebook } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
+import { toast } from "sonner"
 
 export default function Contact() {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,14 +21,60 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Form submission logic would go here
-    console.log("Form submitted:", formData)
-    // Reset form
-    setFormData({ name: "", email: "", message: "" })
-    // Show success message
-    alert("Message sent! I'll get back to you soon.")
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          locale: locale || 'en'
+        }),
+      })
+
+      if (response.ok) {
+        toast.success(
+          locale === 'bg' 
+            ? 'Съобщението е изпратено успешно! Ще отговорим в рамките на 24-48 часа.'
+            : 'Message sent successfully! We will respond within 24-48 hours.',
+          {
+            duration: 5000,
+            style: {
+              background: '#10b981',
+              color: 'white',
+              border: 'none',
+            },
+          }
+        )
+        
+        // Reset form
+        setFormData({ name: "", email: "", message: "" })
+      } else {
+        throw new Error('Failed to send message')
+      }
+    } catch (error) {
+      console.error('Submission error:', error)
+      toast.error(
+        locale === 'bg'
+          ? 'Грешка при изпращане на съобщението. Моля, опитайте отново.'
+          : 'Error sending message. Please try again.',
+        {
+          duration: 5000,
+          style: {
+            background: '#ef4444',
+            color: 'white',
+            border: 'none',
+          },
+        }
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -100,7 +148,8 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
 
@@ -115,7 +164,8 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
 
@@ -130,16 +180,27 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-md bg-gradient-to-r from-purple-500 to-blue-500 dark:from-purple-600 dark:to-blue-600 text-white font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(124,58,237,0.5)] hover:from-purple-400 hover:to-blue-400 dark:hover:from-purple-500 dark:hover:to-blue-500"
+                  disabled={isSubmitting}
+                  className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-md bg-gradient-to-r from-purple-500 to-blue-500 dark:from-purple-600 dark:to-blue-600 text-white font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(124,58,237,0.5)] hover:from-purple-400 hover:to-blue-400 dark:hover:from-purple-500 dark:hover:to-blue-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
                 >
-                  <Send size={18} />
-                  {t("contact.form.submit")}
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      {locale === 'bg' ? 'Изпращане...' : 'Sending...'}
+                    </>
+                  ) : (
+                    <>
+                      <Send size={18} />
+                      {t("contact.form.submit")}
+                    </>
+                  )}
                 </button>
               </form>
             </div>

@@ -53,9 +53,40 @@ export default function Projects() {
 function ProjectCard({ project }: { project: Project }) {
   const { t, tString } = useTranslation()
   
-  // Get the details array from translations
-  const details = t(project.detailsKey)
-  const detailsArray = Array.isArray(details) ? details : [details]
+  // Get the details array from translations - access the raw translations object
+  const { translations } = useTranslation()
+  let detailsArray: string[] = []
+  
+  // Access the translations directly to get the array
+  const keys = project.detailsKey.split('.')
+  let value: unknown = translations
+  
+  for (const key of keys) {
+    if (value && typeof value === 'object' && value !== null && key in value) {
+      value = (value as Record<string, unknown>)[key]
+    } else {
+      value = null
+      break
+    }
+  }
+  
+  if (Array.isArray(value)) {
+    detailsArray = value
+  } else {
+    // Fallback: try to get individual items using tString
+    detailsArray = []
+    for (let i = 0; i < 10; i++) { // Try up to 10 items
+      const itemKey = `${project.detailsKey}.${i}`
+      const item = tString(itemKey)
+      if (item && item !== itemKey) { // If we got a real translation, not the key
+        detailsArray.push(item)
+      } else {
+        break
+      }
+    }
+  }
+  
+
 
   return (
     <div className="group relative overflow-hidden rounded-lg transition-all duration-500 hover:transform hover:scale-[1.02]">
@@ -87,9 +118,9 @@ function ProjectCard({ project }: { project: Project }) {
             ))}
           </div>
 
-          <ul className="mb-6 text-sm text-muted-foreground list-disc pl-5 space-y-1">
+          <ul className="mb-6 text-sm text-muted-foreground list-disc pl-5 space-y-2" style={{ listStyleType: 'disc' }}>
             {detailsArray.map((detail, index) => (
-              <li key={index}>{detail}</li>
+              <li key={index} className="leading-relaxed block" style={{ display: 'list-item' }}>{detail}</li>
             ))}
           </ul>
         </div>

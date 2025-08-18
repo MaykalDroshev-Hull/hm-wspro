@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Code2, Database, Layers, Palette, Server, Zap, Database as DatabaseIcon, FileCode, Globe2, CreditCard } from "lucide-react"
+import { Code2, Database, Layers, Server, Zap, Database as DatabaseIcon, FileCode, Globe2, CreditCard } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 
 export default function Skills() {
@@ -74,14 +74,8 @@ export default function Skills() {
           <SkillTile
             icon={<Server className="h-8 w-8" />}
             name="REST APIs"
-            color="from-purple-400 to-violet-400 dark:from-purple-500 dark:to-violet-500"
+            color="from-purple-400 to-violet-400 dark:from-purple-600 dark:to-violet-600"
             description={tString("skills.restApis")}
-          />
-          <SkillTile
-            icon={<Palette className="h-8 w-8" />}
-            name="Blender"
-            color="from-orange-400 to-red-400 dark:from-orange-500 dark:to-red-500"
-            description={tString("skills.blender")}
           />
         </div>
       </div>
@@ -101,17 +95,35 @@ function SkillTile({
   description: string
 }) {
   const [isHovered, setIsHovered] = useState(false)
+  const [isClicked, setIsClicked] = useState(false)
+
+  const handleMouseEnter = () => setIsHovered(true)
+  const handleMouseLeave = () => setIsHovered(false)
+  const handleClick = () => setIsClicked(!isClicked)
+  const handleTouchStart = () => setIsClicked(!isClicked)
+
+  const isActive = isHovered || isClicked
 
   return (
-    <div className="relative group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+    <div 
+      className="relative group cursor-pointer" 
+      onMouseEnter={handleMouseEnter} 
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+      onTouchStart={handleTouchStart}
+    >
       <div
         className={`absolute -inset-0.5 bg-gradient-to-r ${color} rounded-lg opacity-50 group-hover:opacity-100 blur transition duration-300`}
       ></div>
       <div className="relative flex flex-col items-center justify-center p-6 bg-card/80 backdrop-blur-sm rounded-lg h-full transition-all duration-300 group-hover:transform group-hover:scale-105">
-        <div className="text-card-foreground mb-3">{icon}</div>
-        <h3 className="font-medium text-card-foreground">{name}</h3>
+        {!isActive && (
+          <>
+            <div className="text-card-foreground mb-3">{icon}</div>
+            <h3 className="font-medium text-card-foreground">{name}</h3>
+          </>
+        )}
 
-        {isHovered && (
+        {isActive && (
           <div className="absolute inset-0 flex items-center justify-center bg-card/95 rounded-lg p-4 transition-opacity duration-300">
             <p className="text-sm text-center text-muted-foreground">{description}</p>
           </div>

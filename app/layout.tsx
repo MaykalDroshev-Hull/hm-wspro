@@ -3,6 +3,7 @@ import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TranslationProvider } from "@/contexts/TranslationContext"
 import { Analytics } from "@vercel/analytics/next"
+import { ToastProvider } from "@/components/ui/toast"
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 
@@ -143,6 +144,7 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </TranslationProvider>
+        <ToastProvider />
         <Analytics />
       </body>
     </html>
