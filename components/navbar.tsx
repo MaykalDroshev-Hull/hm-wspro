@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react"
 import ThemeToggle from "./theme-toggle"
 import LanguageSwitcher from "./language-switcher"
 import { useTranslation } from "@/contexts/TranslationContext"
+import { TranslationLoader } from "./translation-loader"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -23,7 +24,9 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            <NavLinks />
+            <TranslationLoader>
+              <NavLinks />
+            </TranslationLoader>
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
@@ -39,7 +42,9 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden bg-background/90 backdrop-blur-lg border-b border-border">
           <div className="container mx-auto px-4 py-4">
-            <NavLinks mobile onClick={() => setIsMenuOpen(false)} />
+            <TranslationLoader>
+              <NavLinks mobile onClick={() => setIsMenuOpen(false)} />
+            </TranslationLoader>
             <div className="flex justify-center items-center gap-4 pt-4 border-t border-border mt-4">
               <LanguageSwitcher />
               <ThemeToggle />
@@ -52,14 +57,19 @@ export default function Navbar() {
 }
 
 function NavLinks({ mobile = false, onClick }: { mobile?: boolean; onClick?: () => void }) {
-  const { t } = useTranslation()
+  const { t, isLoading, isReady, isInitialized } = useTranslation()
+  
+  // Only render if translations are fully loaded
+  if (!isInitialized || isLoading || !isReady) {
+    return null
+  }
   
   const links = [
-    { href: "#home" as const, label: t("nav.home") },
-    { href: "#about" as const, label: t("nav.about") },
-    { href: "#skills" as const, label: t("nav.skills") },
-    { href: "#projects" as const, label: t("nav.projects") },
-    { href: "#contact" as const, label: t("nav.contact") },
+    { href: "#home" as const, key: "nav.home" },
+    { href: "#about" as const, key: "nav.about" },
+    { href: "#skills" as const, key: "nav.skills" },
+    { href: "#projects" as const, key: "nav.projects" },
+    { href: "#contact" as const, key: "nav.contact" },
   ]
 
   return (
@@ -71,7 +81,7 @@ function NavLinks({ mobile = false, onClick }: { mobile?: boolean; onClick?: () 
           className="text-muted-foreground hover:text-foreground transition-colors duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-purple-500 hover:to-cyan-500"
           onClick={onClick}
         >
-          {link.label}
+          {t(link.key)}
         </Link>
       ))}
     </div>

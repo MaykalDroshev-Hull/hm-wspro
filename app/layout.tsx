@@ -2,6 +2,7 @@ import type React from "react"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TranslationProvider } from "@/contexts/TranslationContext"
+import { FOUCPreventionWrapper } from "@/components/translation-loader"
 import { Analytics } from "@vercel/analytics/next"
 import { ToastProvider } from "@/components/ui/toast"
 import type { Metadata, Viewport } from "next"
@@ -140,9 +141,11 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <TranslationProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-            {children}
-          </ThemeProvider>
+          <FOUCPreventionWrapper>
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+              {children}
+            </ThemeProvider>
+          </FOUCPreventionWrapper>
         </TranslationProvider>
         <ToastProvider />
         <Analytics />

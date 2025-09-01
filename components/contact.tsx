@@ -6,6 +6,7 @@ import { useState } from "react"
 import { Github, Linkedin, Mail, MapPin, Send, Facebook } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 import { toast } from "sonner"
+import { TranslationLoader } from "./translation-loader"
 
 export default function Contact() {
   const { t, locale } = useTranslation()
@@ -80,128 +81,134 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-background to-muted">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
-          {t("contact.title")}
-        </h2>
+        <TranslationLoader>
+          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
+            {t("contact.title")}
+          </h2>
+        </TranslationLoader>
 
         <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
           <div>
-            <div className="mb-8">
-              <p className="text-lg text-muted-foreground mb-6">
-                {t("contact.intro")}
-              </p>
+            <TranslationLoader>
+              <div className="mb-8">
+                <p className="text-lg text-muted-foreground mb-6">
+                  {t("contact.intro")}
+                </p>
 
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700">
-                    <Mail className="h-5 w-5 text-white" />
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700">
+                      <Mail className="h-5 w-5 text-white" />
+                    </div>
+                    <span className="text-muted-foreground">{t("contact.email")}</span>
                   </div>
-                  <span className="text-muted-foreground">{t("contact.email")}</span>
-                </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700">
-                    <MapPin className="h-5 w-5 text-white" />
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700">
+                      <MapPin className="h-5 w-5 text-white" />
+                    </div>
+                    <span className="text-muted-foreground">{t("contact.location")}</span>
                   </div>
-                  <span className="text-muted-foreground">{t("contact.location")}</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-card-foreground">{t("contact.connectTitle")}</h3>
-              
-              {/* H (Hristo) Contact Row */}
-              <div className="mb-6">
-                <div className="flex items-center gap-4">
-                  <h4 className="text-lg font-semibold text-purple-400 dark:text-purple-300">H</h4>
-                  <SocialLink icon={<Github />} href="https://github.com/icakaxx" label="Hristo GitHub" />
-                  <SocialLink icon={<Linkedin />} href="https://www.linkedin.com/in/hristo-kalchev-933456200/" label="Hristo LinkedIn" />
-                  <SocialLink icon={<Facebook />} href="https://www.facebook.com/BlameH1M" label="Hristo Facebook" />
                 </div>
               </div>
 
-              {/* M (Michael) Contact Row */}
               <div>
-                <div className="flex items-center gap-4">
-                  <h4 className="text-lg font-semibold text-cyan-400 dark:text-cyan-300">M</h4>
-                  <SocialLink icon={<Github />} href="https://github.com/MaykalDroshev-Hull" label="Michael GitHub" />
-                  <SocialLink icon={<Linkedin />} href="https://www.linkedin.com/in/maykaldroshev/" label="Michael LinkedIn" />
-                  <SocialLink icon={<Facebook />} href="https://www.facebook.com/Maikito007/" label="Michael Facebook" />
+                <h3 className="text-xl font-bold mb-4 text-card-foreground">{t("contact.connectTitle")}</h3>
+                
+                {/* H (Hristo) Contact Row */}
+                <div className="mb-6">
+                  <div className="flex items-center gap-4">
+                    <h4 className="text-lg font-semibold text-purple-400 dark:text-purple-300">H</h4>
+                    <SocialLink icon={<Github />} href="https://github.com/icakaxx" label="Hristo GitHub" />
+                    <SocialLink icon={<Linkedin />} href="https://www.linkedin.com/in/hristo-kalchev-933456200/" label="Hristo LinkedIn" />
+                    <SocialLink icon={<Facebook />} href="https://www.facebook.com/BlameH1M" label="Hristo Facebook" />
+                  </div>
+                </div>
+
+                {/* M (Michael) Contact Row */}
+                <div>
+                  <div className="flex items-center gap-4">
+                    <h4 className="text-lg font-semibold text-cyan-400 dark:text-cyan-300">M</h4>
+                    <SocialLink icon={<Github />} href="https://github.com/MaykalDroshev-Hull" label="Michael GitHub" />
+                    <SocialLink icon={<Linkedin />} href="https://www.linkedin.com/in/maykaldroshev/" label="Michael LinkedIn" />
+                    <SocialLink icon={<Facebook />} href="https://www.facebook.com/Maikito007/" label="Michael Facebook" />
+                  </div>
                 </div>
               </div>
-            </div>
+            </TranslationLoader>
           </div>
 
           <div>
             <div className="relative">
               <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-purple-400 to-cyan-400 dark:from-purple-600 dark:to-cyan-600 opacity-75 blur"></div>
               <form onSubmit={handleSubmit} className="relative bg-card/80 backdrop-blur-sm rounded-lg p-6 md:p-8">
-                <div className="mb-4">
-                  <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">
-                    {t("contact.form.name")}
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    disabled={isSubmitting}
-                    className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-                  />
-                </div>
+                <TranslationLoader>
+                  <div className="mb-4">
+                    <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">
+                      {t("contact.form.name")}
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                    />
+                  </div>
 
-                <div className="mb-4">
-                  <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">
-                    {t("contact.form.email")}
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    disabled={isSubmitting}
-                    className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-                  />
-                </div>
+                  <div className="mb-4">
+                    <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">
+                      {t("contact.form.email")}
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                    />
+                  </div>
 
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-1">
-                    {t("contact.form.message")}
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    disabled={isSubmitting}
-                    className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-                  ></textarea>
-                </div>
+                  <div className="mb-6">
+                    <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-1">
+                      {t("contact.form.message")}
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      disabled={isSubmitting}
+                      rows={5}
+                      className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-none"
+                    />
+                  </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-md bg-gradient-to-r from-purple-500 to-blue-500 dark:from-purple-600 dark:to-blue-600 text-white font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(124,58,237,0.5)] hover:from-purple-400 hover:to-blue-400 dark:hover:from-purple-500 dark:hover:to-blue-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                      {locale === 'bg' ? 'Изпращане...' : 'Sending...'}
-                    </>
-                  ) : (
-                    <>
-                      <Send size={18} />
-                      {t("contact.form.submit")}
-                    </>
-                  )}
-                </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 dark:from-purple-600 dark:to-cyan-600 text-white font-medium rounded-md transition-all duration-300 hover:from-purple-400 hover:to-cyan-400 dark:hover:from-purple-500 dark:hover:to-cyan-500 focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        {locale === 'bg' ? 'Изпращане...' : 'Sending...'}
+                      </>
+                    ) : (
+                      <>
+                        {t("contact.form.submit")}
+                        <Send size={18} />
+                      </>
+                    )}
+                  </button>
+                </TranslationLoader>
               </form>
             </div>
           </div>

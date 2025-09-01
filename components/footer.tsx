@@ -4,6 +4,7 @@ import type React from "react"
 import Link from "next/link"
 import { Mail } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
+import { TranslationLoader } from "./translation-loader"
 
 export default function Footer() {
   const { t } = useTranslation()
@@ -19,7 +20,9 @@ export default function Footer() {
             >
               H & M Website Provisioning
             </Link>
-            <p className="mt-2 text-sm text-muted-foreground">&copy; {new Date().getFullYear()} {t("footer.rights")}</p>
+            <TranslationLoader>
+              <p className="mt-2 text-sm text-muted-foreground">&copy; {new Date().getFullYear()} {t("footer.rights")}</p>
+            </TranslationLoader>
           </div>
 
           <div className="flex flex-col items-center md:items-end">
@@ -27,20 +30,22 @@ export default function Footer() {
               <SocialLink icon={<Mail size={18} />} href="mailto:hm.websiteprovisioning@gmail.com" label="Email" />
             </div>
 
-            <nav className="flex space-x-6">
-              <Link href="#home" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {t("nav.home")}
-              </Link>
-              <Link href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {t("nav.about")}
-              </Link>
-              <Link href="#projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {t("nav.projects")}
-              </Link>
-              <Link href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {t("nav.contact")}
-              </Link>
-            </nav>
+            <TranslationLoader>
+              <nav className="flex space-x-6">
+                <Link href="#home" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  {t("nav.home")}
+                </Link>
+                <Link href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  {t("nav.about")}
+                </Link>
+                <Link href="#projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  {t("nav.projects")}
+                </Link>
+                <Link href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  {t("nav.contact")}
+                </Link>
+              </nav>
+            </TranslationLoader>
           </div>
         </div>
       </div>

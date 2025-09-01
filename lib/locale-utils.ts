@@ -1,6 +1,6 @@
 export const supportedLocales = ['en', 'bg'] as const
 export type SupportedLocale = typeof supportedLocales[number]
-export const defaultLocale: SupportedLocale = 'en'
+export const defaultLocale: SupportedLocale = 'bg'
 
 /**
  * Validate if a locale is supported

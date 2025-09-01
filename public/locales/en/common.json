@@ -61,6 +61,19 @@
         "Responsive design for all devices"
       ]
     },
+    "aseam": {
+      "title": "ASEA-M Detailing Studio",
+      "description": "Modern car detailing studio website with appointment booking system, service showcase, and professional contact management.",
+      "details": [
+        "Professional car detailing studio website with dark theme and yellow accents",
+        "Appointment booking system with email integration for customer requests",
+        "Service showcase with detailed descriptions and pricing",
+        "Multi-language support (Bulgarian/English) with language switcher",
+        "Responsive design optimized for mobile and desktop devices",
+        "Contact form with email notifications to business owner",
+        "Modern UI with graffiti-inspired design elements"
+      ]
+    },
     "comingSoon": {
       "title": "Coming Soon",
       "description": "Working on new exciting projects currently. More details coming soon!",
@@ -136,6 +149,12 @@
       "role": "Co-Executive Director",
       "company": "15-viki-bg",
       "content": "Thanks to Hristo and Michael, I think we are on our way to doing something big and changing the way people view and use our services."
+    },
+    "aychin": {
+      "name": "Aychin",
+      "role": "Business Owner",
+      "company": "ASEA-M Detailing Studio",
+      "content": "I am extremely satisfied! Communication with H&M Website Provisioning is super easy, constructive and the results show it! I strongly recommend and keep going forward guys!"
     }
   },
   "contact": {

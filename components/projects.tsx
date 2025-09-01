@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image"
 import { useTranslation } from "@/contexts/TranslationContext"
+import { TranslationLoader } from "./translation-loader"
 
 interface Project {
   id: number
@@ -12,6 +13,18 @@ interface Project {
 }
 
 export default function Projects() {
+  return (
+    <section id="projects" className="py-20 bg-background">
+      <div className="container mx-auto px-4">
+        <TranslationLoader>
+          <ProjectsContent />
+        </TranslationLoader>
+      </div>
+    </section>
+  )
+}
+
+function ProjectsContent() {
   const { t, tString } = useTranslation()
 
   const projects = [
@@ -25,6 +38,14 @@ export default function Projects() {
     },
     {
       id: 2,
+      titleKey: "projects.aseam.title",
+      descriptionKey: "projects.aseam.description",
+      image: "/images/ASEA_MWebsite.jpg",
+      tags: ["Next.js", "Node.js", "Responsive Design", "Contact Forms", "Email Integration"],
+      detailsKey: "projects.aseam.details",
+    },
+    {
+      id: 3,
       titleKey: "projects.comingSoon.title",
       descriptionKey: "projects.comingSoon.description",
       image: "/images/projects-coming-soon.jpg",
@@ -34,19 +55,17 @@ export default function Projects() {
   ]
 
   return (
-    <section id="projects" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
-          {t("projects.title")}
-        </h2>
+    <>
+      <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
+        {t("projects.title")}
+      </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
+      <div className="grid md:grid-cols-2 gap-8">
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
       </div>
-    </section>
+    </>
   )
 }
 

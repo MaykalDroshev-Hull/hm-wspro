@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { isValidLocale, getLocaleInfo } from '@/lib/locale-utils'
+import { preloadServerTranslations, getServerTranslations } from '@/lib/server-locale-utils'
 import Hero from "@/components/hero"
 import Navbar from "@/components/navbar"
 import About from "@/components/about"
@@ -52,6 +53,10 @@ export default async function LocalePage({ params }: LocalePageProps) {
   if (!isValidLocale(locale)) {
     notFound()
   }
+
+  // Preload server-side translations to prevent FOUC
+  preloadServerTranslations()
+  const serverTranslations = getServerTranslations(locale as any)
 
   return (
     <>

@@ -1,30 +1,20 @@
 "use client"
 
 import { useTranslation } from '@/contexts/TranslationContext'
-import { Skeleton } from '@/components/ui/skeleton'
 
 interface TranslationLoaderProps {
   children: React.ReactNode
   fallback?: React.ReactNode
-  showSkeleton?: boolean
 }
 
 export function TranslationLoader({ 
   children, 
-  fallback = null, 
-  showSkeleton = true 
+  fallback = null
 }: TranslationLoaderProps) {
-  const { isReady, isLoading } = useTranslation()
+  const { isReady, isLoading, isInitialized } = useTranslation()
 
-  if (isLoading || !isReady) {
-    if (showSkeleton) {
-      return (
-        <div className="space-y-2">
-          <Skeleton className="h-6 w-48" />
-          <Skeleton className="h-4 w-32" />
-        </div>
-      )
-    }
+  // Hide content until translations are ready
+  if (!isInitialized || isLoading || !isReady) {
     return fallback
   }
 
@@ -47,6 +37,22 @@ export function withTranslationLoader<P extends object>(
 
 // Hook for conditional rendering based on translation readiness
 export function useTranslationReady() {
-  const { isReady, isLoading } = useTranslation()
-  return { isReady: isReady && !isLoading, isLoading }
+  const { isReady, isLoading, isInitialized } = useTranslation()
+  return { 
+    isReady: isReady && !isLoading && isInitialized, 
+    isLoading,
+    isInitialized 
+  }
+}
+
+// FOUC Prevention Wrapper - hides entire app until translations are ready
+export function FOUCPreventionWrapper({ children }: { children: React.ReactNode }) {
+  const { isReady, isLoading, isInitialized } = useTranslation()
+  
+  // Hide content until translations are fully loaded
+  if (!isInitialized || isLoading || !isReady) {
+    return null
+  }
+  
+  return <>{children}</>
 }

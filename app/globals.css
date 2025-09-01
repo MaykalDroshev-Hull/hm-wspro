@@ -120,3 +120,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* FOUC Prevention - Hide content until translations are ready */
+.translations-loading {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+.translations-ready {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+/* Prevent layout shift during translation loading */
+.translation-placeholder {
+  min-height: 1.5rem;
+  min-width: 4rem;
+}
