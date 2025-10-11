@@ -20,7 +20,7 @@ export default function Navbar() {
             href={`/${locale}`}
             className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 dark:from-purple-400 dark:to-cyan-400"
           >
-            H & M Website Provisioning
+            H&M Website Provisioning
           </Link>
 
           {/* Desktop Navigation */}
