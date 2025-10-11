@@ -7,7 +7,7 @@ import { useTranslation } from "@/contexts/TranslationContext"
 import { TranslationLoader } from "./translation-loader"
 
 export default function Footer() {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
 
   return (
     <footer className="py-8 bg-muted border-t border-border">
@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <Link
-              href="/"
+              href={`/${locale}`}
               className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500"
             >
               H & M Website Provisioning

@@ -10,13 +10,14 @@ import { TranslationLoader } from "./translation-loader"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { locale } = useTranslation()
 
   return (
     <nav className="fixed top-0 z-50 w-full backdrop-blur-lg bg-background/80 border-b border-border">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <Link
-            href="/"
+            href={`/${locale}`}
             className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 dark:from-purple-400 dark:to-cyan-400"
           >
             H & M Website Provisioning
