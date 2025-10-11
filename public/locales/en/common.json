@@ -74,6 +74,37 @@
         "Modern UI with graffiti-inspired design elements"
       ]
     },
+    "pizzaStop": {
+      "title": "Pizza Stop - Food Delivery Platform",
+      "description": "Complete food delivery platform with order management, kitchen operations, delivery tracking, and thermal printer integration.",
+      "details": [
+        "Full-stack food delivery platform built with Next.js 15 and Supabase",
+        "Real-time order management with kitchen and delivery dashboards",
+        "Dynamic menu system with customization options and addon selection",
+        "Google Maps integration for address selection and delivery tracking",
+        "Multiple payment options and guest checkout functionality",
+        "Email notifications system for order updates and confirmations",
+        "Thermal printer integration for kitchen order tickets",
+        "Admin dashboard with product management and analytics",
+        "Mobile-first responsive design with dark theme UI",
+        "Functionality for printing order tickets in the kitchen"
+      ]
+    },
+    "kasameri": {
+      "title": "Kasameri EOOD - Agricultural Business Website",
+      "description": "Modern agricultural business website showcasing quality fruits, vegetables, and 100% natural apple juice from the Lovech region of Bulgaria.",
+      "details": [
+        "Professional agricultural business website with farm-to-table branding",
+        "Hero section with compelling orchard background and dual-language headlines",
+        "Products showcase featuring apples, cherries, pears, melons, tomatoes, and apple juice",
+        "Sustainability initiatives including water recycling and zero waste practices",
+        "Distributor partnership section with benefits and inquiry form",
+        "Photo gallery showcasing farming operations and fresh produce",
+        "Customer testimonials with 5-star ratings and real reviews",
+        "Contact section with company information, location map, and contact form",
+        "Viber integration for quick customer communication"
+      ]
+    },
     "comingSoon": {
       "title": "Coming Soon",
       "description": "Working on new exciting projects currently. More details coming soon!",

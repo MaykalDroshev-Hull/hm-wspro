@@ -13,34 +13,14 @@
   "icons": [
     {
       "src": "/favicon.ico",
-      "sizes": "16x16 32x32",
+      "sizes": "16x16 32x32 48x48",
       "type": "image/x-icon"
     },
     {
-      "src": "/favicon.svg",
+      "src": "/favicon.ico",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
-    },
-    {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/images/screenshot-desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "/images/screenshot-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow"
     }
   ]
 }

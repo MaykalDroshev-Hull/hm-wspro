@@ -1,6 +1,20 @@
 import { redirect } from 'next/navigation'
+import { headers } from 'next/headers'
 
 export default async function RootPage() {
-  // Always redirect to Bulgarian locale
+  // The middleware will handle the redirect, but this is a fallback
+  // Get headers to check if middleware ran
+  const headersList = await headers()
+  
+  // Check for preferred locale cookie
+  const cookieHeader = headersList.get('cookie')
+  const localeMatch = cookieHeader?.match(/NEXT_LOCALE=([^;]+)/)
+  const preferredLocale = localeMatch?.[1]
+  
+  if (preferredLocale && (preferredLocale === 'en' || preferredLocale === 'bg')) {
+    redirect(`/${preferredLocale}`)
+  }
+  
+  // Default fallback to Bulgarian
   redirect('/bg')
 }

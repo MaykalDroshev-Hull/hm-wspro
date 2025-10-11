@@ -14,7 +14,7 @@ export default function SEOStructuredData({ locale }: SEOStructuredDataProps) {
     "url": "https://hm-wspro.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://hm-wspro.com/favicon.svg",
+      "url": "https://hm-wspro.com/favicon.ico",
       "width": 32,
       "height": 32
     },
@@ -109,7 +109,7 @@ export default function SEOStructuredData({ locale }: SEOStructuredDataProps) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "H&M Website Provisioning",
-    "image": "https://hm-wspro.com/favicon.svg",
+    "image": "https://hm-wspro.com/favicon.ico",
     "description": locale === 'en' 
       ? "Professional website development services in Bulgaria and United Kingdom"
       : "Професионални услуги за разработка на уеб сайтове в България и Обединеното кралство",

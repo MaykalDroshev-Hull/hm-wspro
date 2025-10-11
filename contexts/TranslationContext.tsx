@@ -142,6 +142,9 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     setLocale(newLocale)
     loadTranslations(newLocale)
     
+    // Set cookie to remember user preference
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`
+    
     // Update URL to reflect new locale
     const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '') || '/'
     const newPath = `/${newLocale}${pathWithoutLocale}` as const

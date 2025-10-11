@@ -4,7 +4,6 @@ const urlsToCache = [
   '/en',
   '/bg',
   '/favicon.ico',
-  '/favicon.svg',
   '/site.webmanifest',
   '/images/15viki-bg-desktop.jpg',
   '/images/15viki-bg-mobile.jpg',
@@ -85,8 +84,8 @@ function doBackgroundSync() {
 self.addEventListener('push', (event) => {
   const options = {
     body: event.data ? event.data.text() : 'New update available!',
-    icon: '/favicon.svg',
-    badge: '/favicon.svg',
+    icon: '/favicon.ico',
+    badge: '/favicon.ico',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
@@ -96,12 +95,12 @@ self.addEventListener('push', (event) => {
       {
         action: 'explore',
         title: 'View',
-        icon: '/favicon.svg'
+        icon: '/favicon.ico'
       },
       {
         action: 'close',
         title: 'Close',
-        icon: '/favicon.svg'
+        icon: '/favicon.ico'
       }
     ]
   }

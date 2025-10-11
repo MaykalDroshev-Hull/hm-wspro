@@ -46,6 +46,22 @@ function ProjectsContent() {
     },
     {
       id: 3,
+      titleKey: "projects.pizzaStop.title",
+      descriptionKey: "projects.pizzaStop.description",
+      image: "/images/pizza-stop.png",
+      tags: ["Next.js 15", "Supabase", "Google Maps API", "Thermal Printer", "Email System"],
+      detailsKey: "projects.pizzaStop.details",
+    },
+    {
+      id: 4,
+      titleKey: "projects.kasameri.title",
+      descriptionKey: "projects.kasameri.description",
+      image: "/images/kasameri-bg.png",
+      tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "Responsive Design", "WhatsApp Integration"],
+      detailsKey: "projects.kasameri.details",
+    },
+    {
+      id: 5,
       titleKey: "projects.comingSoon.title",
       descriptionKey: "projects.comingSoon.description",
       image: "/images/projects-coming-soon.jpg",
@@ -60,7 +76,7 @@ function ProjectsContent() {
         {t("projects.title")}
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
