@@ -1,6 +1,11 @@
 import { redirect } from 'next/navigation'
 import { headers } from 'next/headers'
 
+// Force dynamic rendering and disable all caching
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+export const fetchCache = 'force-no-store'
+
 export default async function RootPage() {
   // The middleware will handle the redirect, but this is a fallback
   // Get headers to check if middleware ran

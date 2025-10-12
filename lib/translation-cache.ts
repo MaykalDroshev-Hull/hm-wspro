@@ -40,12 +40,7 @@ class ClientTranslationCache {
   }
 
   async get(locale: string): Promise<Record<string, unknown> | null> {
-    // Check in-memory cache first
-    if (this.cache.has(locale)) {
-      return this.cache.get(locale)!
-    }
-
-    // Try to load from network
+    // Always fetch fresh data from network to avoid stale cache
     try {
       const translations = await this.loadFromNetwork(locale)
       if (translations) {
@@ -54,6 +49,10 @@ class ClientTranslationCache {
       }
     } catch (error) {
       console.error(`Failed to load translations for ${locale}:`, error)
+      // Fallback to in-memory cache if network fails
+      if (this.cache.has(locale)) {
+        return this.cache.get(locale)!
+      }
     }
 
     return null
@@ -78,7 +77,16 @@ class ClientTranslationCache {
 
   private async loadFromNetwork(locale: string): Promise<Record<string, unknown> | null> {
     try {
-      const response = await fetch(`/locales/${locale}/common.json`)
+      // Add cache-busting query parameter to ensure fresh data
+      const timestamp = Date.now()
+      const response = await fetch(`/locales/${locale}/common.json?t=${timestamp}`, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      })
       if (response.ok) {
         return await response.json()
       }

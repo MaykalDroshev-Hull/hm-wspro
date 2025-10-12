@@ -63,9 +63,13 @@ export function middleware(request: NextRequest) {
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
 
-  // If pathname already has a valid locale, continue
+  // If pathname already has a valid locale, continue with no-cache headers
   if (pathnameHasLocale) {
-    return NextResponse.next()
+    const response = NextResponse.next()
+    response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+    response.headers.set('Pragma', 'no-cache')
+    response.headers.set('Expires', '0')
+    return response
   }
 
   // Only redirect if we're at the root path
@@ -75,7 +79,11 @@ export function middleware(request: NextRequest) {
     if (cookieLocale && supportedLocales.includes(cookieLocale)) {
       const url = request.nextUrl.clone()
       url.pathname = `/${cookieLocale}`
-      return NextResponse.redirect(url)
+      const response = NextResponse.redirect(url)
+      response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+      response.headers.set('Pragma', 'no-cache')
+      response.headers.set('Expires', '0')
+      return response
     }
 
     // Try to get locale from geolocation (Vercel provides this header)
@@ -92,6 +100,9 @@ export function middleware(request: NextRequest) {
         maxAge: 60 * 60 * 24 * 365, // 1 year
         path: '/'
       })
+      response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+      response.headers.set('Pragma', 'no-cache')
+      response.headers.set('Expires', '0')
       return response
     }
 
@@ -107,10 +118,18 @@ export function middleware(request: NextRequest) {
       maxAge: 60 * 60 * 24 * 365, // 1 year
       path: '/'
     })
+    // Add no-cache headers
+    response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+    response.headers.set('Pragma', 'no-cache')
+    response.headers.set('Expires', '0')
     return response
   }
 
-  return NextResponse.next()
+  const response = NextResponse.next()
+  response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+  response.headers.set('Pragma', 'no-cache')
+  response.headers.set('Expires', '0')
+  return response
 }
 
 export const config = {

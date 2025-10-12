@@ -1,17 +1,14 @@
-const CACHE_NAME = 'hm-wspro-v1.0.0'
+// Updated cache version to force cache refresh
+const CACHE_NAME = 'hm-wspro-v2.0.0'
+// Only cache static assets, NOT pages or locales
 const urlsToCache = [
-  '/',
-  '/en',
-  '/bg',
   '/favicon.ico',
   '/site.webmanifest',
   '/images/15viki-bg-desktop.jpg',
-  '/images/15viki-bg-mobile.jpg',
-  '/locales/en/common.json',
-  '/locales/bg/common.json'
+  '/images/15viki-bg-mobile.jpg'
 ]
 
-// Install event - cache resources
+// Install event - cache resources and skip waiting
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -20,31 +17,61 @@ self.addEventListener('install', (event) => {
         return cache.addAll(urlsToCache)
       })
   )
+  // Force the waiting service worker to become the active service worker
+  self.skipWaiting()
 })
 
-// Fetch event - serve from cache when offline
+// Fetch event - NETWORK FIRST strategy to ensure fresh content
 self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url)
+  
+  // Never cache HTML pages, API routes, or locale files
+  const shouldNotCache = 
+    event.request.method !== 'GET' ||
+    url.pathname.includes('/api/') ||
+    url.pathname.includes('/locales/') ||
+    url.pathname === '/' ||
+    url.pathname === '/en' ||
+    url.pathname === '/bg' ||
+    event.request.headers.get('accept')?.includes('text/html')
+
+  if (shouldNotCache) {
+    // Always fetch from network, no caching
+    event.respondWith(
+      fetch(event.request, {
+        cache: 'no-store'
+      }).catch(() => {
+        // If network fails, return error
+        return new Response('Network error', { status: 408 })
+      })
+    )
+    return
+  }
+
+  // For static assets, use cache-first strategy
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
-        // Return cached version or fetch from network
         if (response) {
           return response
         }
         return fetch(event.request)
           .then((response) => {
-            // Check if we received a valid response
+            // Only cache static assets
             if (!response || response.status !== 200 || response.type !== 'basic') {
               return response
             }
 
-            // Clone the response
-            const responseToCache = response.clone()
-
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache)
-              })
+            // Only cache images and fonts
+            if (url.pathname.startsWith('/images/') || 
+                url.pathname.includes('.woff') || 
+                url.pathname.includes('.ttf')) {
+              const responseToCache = response.clone()
+              caches.open(CACHE_NAME)
+                .then((cache) => {
+                  cache.put(event.request, responseToCache)
+                })
+            }
 
             return response
           })
@@ -52,7 +79,7 @@ self.addEventListener('fetch', (event) => {
   )
 })
 
-// Activate event - clean up old caches
+// Activate event - clean up old caches and take control immediately
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -64,6 +91,9 @@ self.addEventListener('activate', (event) => {
           }
         })
       )
+    }).then(() => {
+      // Take control of all pages immediately
+      return self.clients.claim()
     })
   )
 })

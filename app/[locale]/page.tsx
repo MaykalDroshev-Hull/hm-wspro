@@ -14,6 +14,11 @@ import SEOStructuredData from "@/components/seo-structured-data"
 import PerformanceOptimizer from "@/components/performance-optimizer"
 import type { Metadata } from 'next'
 
+// Force dynamic rendering and disable all caching
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+export const fetchCache = 'force-no-store'
+
 interface LocalePageProps {
   params: Promise<{
     locale: string
