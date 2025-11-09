@@ -1,24 +1,62 @@
 "use client"
 import { useTranslation } from "@/contexts/TranslationContext"
 import { TranslationLoader } from "./translation-loader"
+import { motion } from "framer-motion"
+
+const easeOut = "easeOut" as const
+
+const sectionMotionProps = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: easeOut },
+  viewport: { once: true, amount: 0.1, margin: "0px 0px -100px 0px" },
+}
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const childVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+}
 
 export default function Timeline() {
   const { t } = useTranslation()
 
   return (
-    <section id="journey" className="py-20 bg-gradient-to-b from-muted to-background">
-      <div className="container mx-auto px-4">
-        <TranslationLoader>
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
-            {t("timeline.title")}
-          </h2>
-        </TranslationLoader>
+    <motion.section id="journey" className="py-20 bg-gradient-to-b from-muted to-background" {...sectionMotionProps}>
+      <motion.div
+        className="container mx-auto px-4"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <motion.div variants={childVariants}>
+          <TranslationLoader>
+            <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
+              {t("timeline.title")}
+            </h2>
+          </TranslationLoader>
+        </motion.div>
 
-        <TranslationLoader>
-          <TimelineContent />
-        </TranslationLoader>
-      </div>
-    </section>
+        <motion.div variants={childVariants}>
+          <TranslationLoader>
+            <TimelineContent />
+          </TranslationLoader>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   )
 }
 
@@ -65,13 +103,14 @@ function TimelineContent() {
   ]
 
   return (
-    <div className="relative">
+    <motion.div variants={containerVariants} className="relative">
       {/* Vertical line */}
       <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-400 to-cyan-400 dark:from-purple-500 dark:to-cyan-500 transform md:translate-x-[-0.5px]"></div>
 
-      <div className="space-y-12">
+      <motion.div variants={containerVariants} className="space-y-12">
         {milestones.map((milestone, index) => (
-          <div
+          <motion.div
+            variants={childVariants}
             key={milestone.id}
             className={`relative flex flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
           >
@@ -79,8 +118,9 @@ function TimelineContent() {
             <div className="absolute left-0 md:left-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 dark:from-purple-500 dark:to-cyan-500 transform translate-x-[-10px] md:translate-x-[-10px] shadow-[0_0_10px_rgba(124,58,237,0.7)]"></div>
 
             {/* Content */}
-            <div className="md:w-1/2 pl-8 md:pl-0 md:pr-8">
-              <div
+            <motion.div variants={childVariants} className="md:w-1/2 pl-8 md:pl-0 md:pr-8">
+              <motion.div
+                variants={childVariants}
                 className={`p-5 rounded-lg bg-card/80 backdrop-blur-sm border border-border ${
                   index % 2 === 0 ? "md:ml-8" : "md:mr-8"
                 }`}
@@ -90,14 +130,14 @@ function TimelineContent() {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-card-foreground">{milestone.title}</h3>
                 <p className="text-muted-foreground">{milestone.description}</p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Empty space for alignment */}
             <div className="hidden md:block md:w-1/2"></div>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }

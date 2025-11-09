@@ -6,85 +6,143 @@ import { useState } from "react"
 import { Code2, Database, Layers, Server, Zap, Database as DatabaseIcon, FileCode, Globe2, CreditCard } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 import { TranslationLoader } from "./translation-loader"
+import { motion } from "framer-motion"
+
+const easeOut = "easeOut" as const
+
+const sectionMotionProps = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: easeOut },
+  viewport: { once: true, amount: 0.1, margin: "0px 0px -100px 0px" },
+}
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const childVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+}
 
 export default function Skills() {
   const { t, tString } = useTranslation()
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-muted to-background">
-      <div className="container mx-auto px-4">
-        <TranslationLoader>
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
-            {t("skills.title")}
-          </h2>
-        </TranslationLoader>
+    <motion.section id="skills" className="py-20 bg-gradient-to-b from-muted to-background" {...sectionMotionProps}>
+      <motion.div
+        className="container mx-auto px-4"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <motion.div variants={childVariants}>
+          <TranslationLoader>
+            <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
+              {t("skills.title")}
+            </h2>
+          </TranslationLoader>
+        </motion.div>
 
-        <TranslationLoader>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            <SkillTile
-              icon={<Code2 className="h-8 w-8" />}
-              name="JavaScript"
-              color="from-yellow-400 to-amber-400 dark:from-yellow-500 dark:to-amber-500"
-              description={tString("skills.javascript")}
-            />
-            <SkillTile
-              icon={<FileCode className="h-8 w-8" />}
-              name="TypeScript"
-              color="from-blue-400 to-indigo-400 dark:from-blue-500 dark:to-indigo-500"
-              description={tString("skills.typescript")}
-            />
-            <SkillTile
-              icon={<Zap className="h-8 w-8" />}
-              name="Vercel"
-              color="from-black to-gray-600 dark:from-white dark:to-gray-400"
-              description={tString("skills.vercel")}
-            />
-            <SkillTile
-              icon={<DatabaseIcon className="h-8 w-8" />}
-              name="Supabase"
-              color="from-green-400 to-emerald-400 dark:from-green-500 dark:to-emerald-500"
-              description={tString("skills.supabase")}
-            />
-            <SkillTile
-              icon={<CreditCard className="h-8 w-8" />}
-              name="Stripe"
-              color="from-indigo-400 to-purple-400 dark:from-indigo-500 dark:to-purple-500"
-              description={tString("skills.stripe")}
-            />
-            <SkillTile
-              icon={<Code2 className="h-8 w-8" />}
-              name="C#"
-              color="from-purple-400 to-violet-400 dark:from-purple-500 dark:to-violet-500"
-              description={tString("skills.csharp")}
-            />
-            <SkillTile
-              icon={<Globe2 className="h-8 w-8" />}
-              name="Java"
-              color="from-orange-400 to-red-400 dark:from-orange-500 dark:to-red-500"
-              description={tString("skills.java")}
-            />
-            <SkillTile
-              icon={<Database className="h-8 w-8" />}
-              name="T-SQL"
-              color="from-blue-400 to-cyan-400 dark:from-blue-500 dark:to-cyan-500"
-              description={tString("skills.tsql")}
-            />
-            <SkillTile
-              icon={<Layers className="h-8 w-8" />}
-              name="Tailwind"
-              color="from-cyan-400 to-blue-400 dark:from-cyan-500 dark:to-blue-500"
-              description={tString("skills.tailwind")}
-            />
-            <SkillTile
-              icon={<Server className="h-8 w-8" />}
-              name="REST APIs"
-              color="from-purple-400 to-violet-400 dark:from-purple-600 dark:to-violet-600"
-              description={tString("skills.restApis")}
-            />
-          </div>
-        </TranslationLoader>
-      </div>
-    </section>
+        <motion.div variants={childVariants}>
+          <TranslationLoader>
+            <motion.div variants={containerVariants} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+              <motion.div variants={childVariants}>
+                <SkillTile
+                  icon={<Code2 className="h-8 w-8" />}
+                  name="JavaScript"
+                  color="from-yellow-400 to-amber-400 dark:from-yellow-500 dark:to-amber-500"
+                  description={tString("skills.javascript")}
+                />
+              </motion.div>
+              <motion.div variants={childVariants}>
+                <SkillTile
+                  icon={<FileCode className="h-8 w-8" />}
+                  name="TypeScript"
+                  color="from-blue-400 to-indigo-400 dark:from-blue-500 dark:to-indigo-500"
+                  description={tString("skills.typescript")}
+                />
+              </motion.div>
+              <motion.div variants={childVariants}>
+                <SkillTile
+                  icon={<Zap className="h-8 w-8" />}
+                  name="Vercel"
+                  color="from-black to-gray-600 dark:from-white dark:to-gray-400"
+                  description={tString("skills.vercel")}
+                />
+              </motion.div>
+              <motion.div variants={childVariants}>
+                <SkillTile
+                  icon={<DatabaseIcon className="h-8 w-8" />}
+                  name="Supabase"
+                  color="from-green-400 to-emerald-400 dark:from-green-500 dark:to-emerald-500"
+                  description={tString("skills.supabase")}
+                />
+              </motion.div>
+              <motion.div variants={childVariants}>
+                <SkillTile
+                  icon={<CreditCard className="h-8 w-8" />}
+                  name="Stripe"
+                  color="from-indigo-400 to-purple-400 dark:from-indigo-500 dark:to-purple-500"
+                  description={tString("skills.stripe")}
+                />
+              </motion.div>
+              <motion.div variants={childVariants}>
+                <SkillTile
+                  icon={<Code2 className="h-8 w-8" />}
+                  name="C#"
+                  color="from-purple-400 to-violet-400 dark:from-purple-500 dark:to-violet-500"
+                  description={tString("skills.csharp")}
+                />
+              </motion.div>
+              <motion.div variants={childVariants}>
+                <SkillTile
+                  icon={<Globe2 className="h-8 w-8" />}
+                  name="Java"
+                  color="from-orange-400 to-red-400 dark:from-orange-500 dark:to-red-500"
+                  description={tString("skills.java")}
+                />
+              </motion.div>
+              <motion.div variants={childVariants}>
+                <SkillTile
+                  icon={<Database className="h-8 w-8" />}
+                  name="T-SQL"
+                  color="from-blue-400 to-cyan-400 dark:from-blue-500 dark:to-cyan-500"
+                  description={tString("skills.tsql")}
+                />
+              </motion.div>
+              <motion.div variants={childVariants}>
+                <SkillTile
+                  icon={<Layers className="h-8 w-8" />}
+                  name="Tailwind"
+                  color="from-cyan-400 to-blue-400 dark:from-cyan-500 dark:to-blue-500"
+                  description={tString("skills.tailwind")}
+                />
+              </motion.div>
+              <motion.div variants={childVariants}>
+                <SkillTile
+                  icon={<Server className="h-8 w-8" />}
+                  name="REST APIs"
+                  color="from-purple-400 to-violet-400 dark:from-purple-600 dark:to-violet-600"
+                  description={tString("skills.restApis")}
+                />
+              </motion.div>
+            </motion.div>
+          </TranslationLoader>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   )
 }
 

@@ -2,20 +2,54 @@
 
 import { useEffect, useRef } from "react"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { motion, useAnimation, useInView } from "framer-motion"
 import { useTranslation } from "@/contexts/TranslationContext"
-import { TranslationLoader } from "./translation-loader"
+import { TranslationLoader, useTranslationReady } from "./translation-loader"
 
-const heroStackItems = [
-  "hero.stack.next",
-  "hero.stack.shadcn",
-  "hero.stack.radix",
-  "hero.stack.tailwind",
-]
+const easeOut = "easeOut" as const
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+}
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const childVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+}
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const sectionControls = useAnimation()
+  const containerControls = useAnimation()
+  const isSectionInView = useInView(sectionRef, { margin: "-10% 0px", amount: 0.2, once: true })
+  const { isReady } = useTranslationReady()
   const { t } = useTranslation()
+
+  useEffect(() => {
+    if (isReady && isSectionInView) {
+      sectionControls.start("visible")
+      containerControls.start("visible")
+    }
+  }, [isReady, isSectionInView, sectionControls, containerControls])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -140,12 +174,204 @@ export default function Hero() {
     }
   }, [])
 
+  const AnimatedHeroBadges = () => {
+    const { t } = useTranslation()
+
+    const container = {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.1,
+          delayChildren: 0, // Start immediately
+        },
+      },
+    }
+
+    const child = {
+      hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
+      visible: {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        transition: { duration: 0.4 },
+      },
+    }
+
+    return (
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        className="relative flex justify-center mb-8"
+      >
+        <div
+          className="flex items-center gap-3 px-6"
+          role="list"
+          aria-label="Capabilities badges"
+        >
+          <motion.span
+            variants={child}
+            className="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 border border-purple-300/40 dark:border-purple-500/20 text-sm font-medium text-muted-foreground"
+            role="listitem"
+          >
+            {t("hero.badge")}
+          </motion.span>
+          <motion.span
+            variants={child}
+            className="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 border border-purple-300/40 dark:border-purple-500/20 text-sm font-medium text-muted-foreground"
+            role="listitem"
+          >
+            {t("hero.design")}
+          </motion.span>
+        </div>
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 left-0 w-10 rounded-full bg-gradient-to-r from-black via-black/80 to-transparent"
+        />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 w-10 rounded-full bg-gradient-to-l from-black via-black/80 to-transparent"
+        />
+      </motion.div>
+    )
+  }
+
+  const AnimatedHeroTitle = () => {
+    const container = {
+      hidden: {},
+      visible: {
+        transition: {
+          staggerChildren: 0.08,
+          delayChildren: 0.3, // Start title while badges are still animating
+        },
+      },
+    }
+
+    const child = {
+      hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+      visible: {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        transition: { duration: 0.5 },
+      },
+    }
+
+    return (
+      <motion.h1
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        id="hero-heading"
+        className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+      >
+        <motion.span
+          variants={child}
+          className="block bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent"
+        >
+          H&M
+        </motion.span>
+        <motion.span
+          variants={child}
+          className="block bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent"
+        >
+          Website Provisioning
+        </motion.span>
+      </motion.h1>
+    )
+  }
+
+  const AnimatedHeroSubtitle = () => {
+    const { t } = useTranslation()
+    const text = String(t("hero.subtitle") || "")
+
+    // Split by words
+    const words = text.split(" ")
+
+    const container = {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.06,
+          delayChildren: 0.6, // Start subtitle while title is still animating
+        },
+      },
+    }
+
+    const child = {
+      hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
+      visible: {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        transition: { duration: 0.35 },
+      },
+    }
+
+    return (
+      <motion.p
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-muted-foreground"
+      >
+        {words.map((word: string, i: number) => (
+          <motion.span
+            key={i}
+            variants={child}
+            style={{ display: "inline-block", marginRight: "0.25em" }}
+          >
+            {word}
+          </motion.span>
+        ))}
+      </motion.p>
+    )
+  }
+
+  const AnimatedHeroButtons = () => {
+    const { t } = useTranslation()
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.5,
+          delay: 0.95, // Start buttons as subtitle settles
+          ease: "easeOut"
+        }}
+        className="flex flex-col sm:flex-row items-center justify-center gap-4"
+      >
+        <Link
+          href="#projects"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 border border-purple-300/40 dark:border-purple-500/20 text-purple-900 dark:text-purple-100 font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(147,51,234,0.35)] hover:from-purple-100/80 hover:to-blue-200/80 dark:hover:from-purple-800/40 dark:hover:to-blue-800/40 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+          aria-label={`${t("hero.cta")} - Navigate to projects section`}
+        >
+          {t("hero.cta")}
+        </Link>
+        <Link
+          href="#contact"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 dark:from-purple-600 dark:to-blue-600 text-white font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(124,58,237,0.5)] hover:from-purple-400 hover:to-blue-400 dark:hover:from-purple-500 dark:hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+          aria-label={`${t("hero.contact")} - Navigate to contact section`}
+        >
+          {t("hero.contact")}
+        </Link>
+      </motion.div>
+    )
+  }
+
   return (
-    <section 
+    <motion.section 
+      ref={sectionRef}
       id="home" 
       className="relative h-screen flex items-center justify-center overflow-hidden"
       aria-labelledby="hero-heading"
       role="banner"
+      variants={sectionVariants}
+      initial="hidden"
+      animate={sectionControls}
     >
       <canvas 
         ref={canvasRef} 
@@ -153,64 +379,27 @@ export default function Hero() {
         aria-hidden="true"
         role="presentation"
       />
-      <div className="container mx-auto px-4 z-10 text-center">
+      <motion.div
+        className="container mx-auto px-4 z-10 text-center"
+        variants={containerVariants}
+        initial="hidden"
+        animate={containerControls}
+      >
         <TranslationLoader>
-          <div className="relative flex justify-center mb-8">
-            <div
-              className="flex items-center gap-3 px-6"
-              role="list"
-              aria-label="Capabilities badges"
-            >
-              <span
-                className="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 border border-purple-300/40 dark:border-purple-500/20 text-sm font-medium text-muted-foreground"
-                role="listitem"
-              >
-                {t("hero.badge")}
-              </span>
-              <span
-                className="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 border border-purple-300/40 dark:border-purple-500/20 text-sm font-medium text-muted-foreground"
-                role="listitem"
-              >
-                {t("hero.design")}
-              </span>
-            </div>
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-0 w-10 rounded-full bg-gradient-to-r from-black via-black/80 to-transparent"
-            />
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 right-0 w-10 rounded-full bg-gradient-to-l from-black via-black/80 to-transparent"
-            />
-          </div>
-          <h1 
-            id="hero-heading"
-            className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400"
-          >
-            H&M<br></br>Website Provisioning
-
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-muted-foreground">
-            {t("hero.subtitle")}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="#projects" 
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 border border-purple-300/40 dark:border-purple-500/20 text-purple-900 dark:text-purple-100 font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(147,51,234,0.35)] hover:from-purple-100/80 hover:to-blue-200/80 dark:hover:from-purple-800/40 dark:hover:to-blue-800/40 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
-              aria-label={`${t("hero.cta")} - Navigate to projects section`}
-            >
-              {t("hero.cta")}
-            </Link>
-            <Link
-              href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 dark:from-purple-600 dark:to-blue-600 text-white font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(124,58,237,0.5)] hover:from-purple-400 hover:to-blue-400 dark:hover:from-purple-500 dark:hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
-              aria-label={`${t("hero.contact")} - Navigate to contact section`}
-            >
-              {t("hero.contact")}
-            </Link>
-          </div>
+          <motion.div variants={childVariants}>
+            <AnimatedHeroBadges />
+          </motion.div>
+          <motion.div variants={childVariants}>
+            <AnimatedHeroTitle />
+          </motion.div>
+          <motion.div variants={childVariants}>
+            <AnimatedHeroSubtitle />
+          </motion.div>
+          <motion.div variants={childVariants}>
+            <AnimatedHeroButtons />
+          </motion.div>
         </TranslationLoader>
-      </div>
+      </motion.div>
       
       {/* Skip to main content link for accessibility */}
       <a
@@ -219,6 +408,6 @@ export default function Hero() {
       >
         Skip to main content
       </a>
-    </section>
+    </motion.section>
   )
 }

@@ -6,16 +6,50 @@ import Image from "next/image"
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 import { TranslationLoader } from "./translation-loader"
+import { motion } from "framer-motion"
+
+const easeOut = "easeOut" as const
+
+const sectionMotionProps = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: easeOut },
+  viewport: { once: true, amount: 0.1, margin: "0px 0px -100px 0px" },
+}
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const childVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+}
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <motion.section id="testimonials" className="py-20 bg-background" {...sectionMotionProps}>
+      <motion.div
+        className="container mx-auto px-4"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <TranslationLoader>
           <TestimonialsContent />
         </TranslationLoader>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   )
 }
 
@@ -65,11 +99,13 @@ function TestimonialsContent() {
 
   return (
     <>
-      <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
-        {t("testimonials.title")}
-      </h2>
+      <motion.div variants={childVariants}>
+        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
+          {t("testimonials.title")}
+        </h2>
+      </motion.div>
 
-      <div className="relative max-w-4xl mx-auto">
+      <motion.div variants={childVariants} className="relative max-w-4xl mx-auto">
         <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-purple-400 to-cyan-400 dark:from-purple-600 dark:to-cyan-600 opacity-50 blur"></div>
         <div className="relative overflow-hidden rounded-lg bg-card/80 backdrop-blur-sm p-8 md:p-12">
           <Quote className="absolute top-6 left-6 h-12 w-12 text-purple-400/30 dark:text-purple-500/20" />
@@ -139,7 +175,7 @@ function TestimonialsContent() {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }

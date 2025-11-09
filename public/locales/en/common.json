@@ -52,7 +52,8 @@
   "projects": {
     "title": "Projects",
     "hvac": {
-      "title": "15-viki-bg HVAC Platform",
+      "title": "15-viki-bg",
+      "subtitle": "HVAC Platform",
       "description": "Professional HVAC e-commerce platform with product management, order processing, installation scheduling, and administrative tools.",
       "details": [
         "Full-stack e-commerce platform for HVAC services",
@@ -65,7 +66,8 @@
       ]
     },
     "aseam": {
-      "title": "ASEA-M Detailing Studio",
+      "title": "ASEA-M",
+      "subtitle": "Detailing Studio",
       "description": "Modern car detailing studio website with appointment booking system, service showcase, and professional contact management.",
       "details": [
         "Professional car detailing studio website with dark theme and yellow accents",
@@ -78,7 +80,8 @@
       ]
     },
     "pizzaStop": {
-      "title": "Pizza Stop - Food Delivery Platform",
+      "title": "Pizza Stop",
+      "subtitle": "Food Delivery Platform",
       "description": "Complete food delivery platform with order management, kitchen operations, delivery tracking, and thermal printer integration.",
       "details": [
         "Full-stack food delivery platform built with Next.js 15 and Supabase",
@@ -94,7 +97,8 @@
       ]
     },
     "kasameri": {
-      "title": "Kasameri EOOD - Agricultural Business Website",
+      "title": "Kasameri EOOD",
+      "subtitle": "Agricultural Business",
       "description": "Modern agricultural business website showcasing quality fruits, vegetables, and 100% natural apple juice from the Lovech region of Bulgaria.",
       "details": [
         "Professional agricultural business website with farm-to-table branding",
@@ -110,41 +114,10 @@
     },
     "comingSoon": {
       "title": "Coming Soon",
+      "subtitle": "New Project",
       "description": "Working on new exciting projects currently. More details coming soon!",
       "tag": "In Development",
       "details": ["New project details will be revealed soon"]
-    },
-    "scla": {
-      "title": "SCLA (Star City Living App)",
-      "description": "Resident management system for handling subscriptions, prepaid packages, and resident profiles.",
-      "details": [
-        "Built searchable and paginated tables using Laravel and Vue 3",
-        "Created Excel export features with filters by status (Active, Inactive, Rejected)",
-        "Implemented tabbed interfaces and reset logic for seamless UX"
-      ]
-    },
-    "synpitarn": {
-      "title": "Synpitarn Loan Management System",
-      "description": "Inherited and refactored legacy code to support modern queue jobs and bulk data processing.",
-      "details": [
-        "Created background jobs for Excel exports and SMS/notification handling",
-        "Enhanced the admin dashboard for better user control over loan applications"
-      ]
-    },
-    "password": {
-      "title": "Password Expiration & Security Flow",
-      "description": "Enforced a 90-day password expiration policy with scheduled email alerts.",
-      "details": [
-        "Set up password_changed_at tracking, login restrictions, and password reuse prevention",
-        "Created custom email notifications instead of Laravel's default notification system"
-      ]
-    },
-    "portfolio3d": {
-      "title": "3D Portfolio + Creative Designs",
-      "description": "Currently designing a 3D-themed dark portfolio with Blender models and glassmorphism UI.",
-      "details": [
-        "Exploring Three.js integration and 3D asset display in a web context"
-      ]
     }
   },
   "timeline": {

@@ -1,36 +1,65 @@
 "use client"
 import Image from "next/image"
 import { useTranslation } from "@/contexts/TranslationContext"
-import { TranslationLoader } from "./translation-loader"
+import { TranslationLoader, useTranslationReady } from "./translation-loader"
+import { motion } from "framer-motion"
 
 interface Project {
   id: number
   titleKey: string
+  subtitleKey: string
   descriptionKey: string
   image: string
   tags: string[]
   detailsKey: string
 }
 
+const easeOut = "easeOut" as const
+
+const sectionMotionProps = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: easeOut },
+  viewport: { once: true, amount: 0.1, margin: "0px 0px -100px 0px" },
+}
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const childVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+}
+
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <TranslationLoader>
-          <ProjectsContent />
-        </TranslationLoader>
-      </div>
-    </section>
+    <motion.section id="projects" className="py-20 bg-background" {...sectionMotionProps}>
+      <TranslationLoader>
+        <ProjectsContent />
+      </TranslationLoader>
+    </motion.section>
   )
 }
 
 function ProjectsContent() {
   const { t, tString } = useTranslation()
+  const { isReady } = useTranslationReady()
 
   const projects = [
     {
       id: 1,
       titleKey: "projects.hvac.title",
+      subtitleKey: "projects.hvac.subtitle",
       descriptionKey: "projects.hvac.description",
       image: "/images/15viki-bg-desktop.jpg",
       tags: ["Next.js", "Supabase", "Stripe", "PostgreSQL", "Google Maps API"],
@@ -39,6 +68,7 @@ function ProjectsContent() {
     {
       id: 2,
       titleKey: "projects.aseam.title",
+      subtitleKey: "projects.aseam.subtitle",
       descriptionKey: "projects.aseam.description",
       image: "/images/ASEA_MWebsite.jpg",
       tags: ["Next.js", "Node.js", "Responsive Design", "Contact Forms", "Email Integration"],
@@ -47,6 +77,7 @@ function ProjectsContent() {
     {
       id: 3,
       titleKey: "projects.pizzaStop.title",
+      subtitleKey: "projects.pizzaStop.subtitle",
       descriptionKey: "projects.pizzaStop.description",
       image: "/images/pizza-stop.png",
       tags: ["Next.js 15", "Supabase", "Google Maps API", "Thermal Printer", "Email System"],
@@ -55,6 +86,7 @@ function ProjectsContent() {
     {
       id: 4,
       titleKey: "projects.kasameri.title",
+      subtitleKey: "projects.kasameri.subtitle",
       descriptionKey: "projects.kasameri.description",
       image: "/images/kasameri-bg.png",
       tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "Responsive Design", "WhatsApp Integration"],
@@ -63,6 +95,7 @@ function ProjectsContent() {
     {
       id: 5,
       titleKey: "projects.comingSoon.title",
+      subtitleKey: "projects.comingSoon.subtitle",
       descriptionKey: "projects.comingSoon.description",
       image: "/images/projects-coming-soon.jpg",
       tags: [tString("projects.comingSoon.tag")],
@@ -72,14 +105,21 @@ function ProjectsContent() {
 
   return (
     <>
-      <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
-        {t("projects.title")}
-      </h2>
+      <motion.div variants={childVariants}>
+        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
+          {t("projects.title")}
+        </h2>
+      </motion.div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          variants={containerVariants}
+          className="grid md:grid-cols-1 lg:grid-cols-1 gap-8"
+        >
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </motion.div>
       </div>
     </>
   )
@@ -87,7 +127,7 @@ function ProjectsContent() {
 
 function ProjectCard({ project }: { project: Project }) {
   const { t, tString } = useTranslation()
-  
+
   // Get the details array from translations - access the raw translations object
   const { translations } = useTranslation()
   let detailsArray: string[] = []
@@ -124,42 +164,42 @@ function ProjectCard({ project }: { project: Project }) {
 
 
   return (
-    <div className="group relative overflow-hidden rounded-lg transition-all duration-500 hover:transform hover:scale-[1.02]">
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 dark:from-purple-600 dark:to-cyan-600 opacity-50 group-hover:opacity-100 blur transition duration-300"></div>
+    <motion.div variants={childVariants} className="group relative overflow-hidden rounded-lg transition-all duration-500 hover:transform hover:scale-[1.02]">
       <div className="relative bg-card rounded-lg overflow-hidden">
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative overflow-hidden" style={{ aspectRatio: 'auto 2400 / 1345' }}
+        >
           <Image
             src={project.image || "/placeholder.svg"}
             alt={tString(project.titleKey)}
-            width={600}
-            height={400}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60"></div>
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110" 
+
+          /></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60">
         </div>
-
-        <div className="p-6">
-          <h3 className="text-xl font-bold mb-2 text-card-foreground">{t(project.titleKey)}</h3>
-          <p className="text-muted-foreground mb-4">{t(project.descriptionKey)}</p>
-
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags.map((tag: string) => (
-              <span
-                key={tag}
-                className="px-2 py-1 text-xs rounded-full bg-muted text-muted-foreground border border-border"
-              >
-                {tag}
-              </span>
-            ))}
+</div>
+          <div className="flex justify-between items-center">
+            <h3 className="text-xl font-bold text-card-foreground">{t(project.titleKey)}</h3>
+            <p className="text-sm text-muted-foreground">
+              {t(project.subtitleKey)}
+            </p>
           </div>
 
-          <ul className="mb-6 text-sm text-muted-foreground list-disc pl-5 space-y-2" style={{ listStyleType: 'disc' }}>
-            {detailsArray.map((detail, index) => (
-              <li key={index} className="leading-relaxed block" style={{ display: 'list-item' }}>{detail}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
+          {/* Hidden elements - keeping the data but not displaying */}
+          <div style={{ display: 'none' }}>
+            <p>{t(project.descriptionKey)}</p>
+            <div>
+              {project.tags.map((tag: string) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+            <ul>
+              {detailsArray.map((detail, index) => (
+                <li key={index}>{detail}</li>
+              ))}
+            </ul>
+          </div>
+      
+    </motion.div>
   )
 }
