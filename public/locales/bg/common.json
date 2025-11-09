@@ -3,6 +3,7 @@
     "home": "Начало",
     "about": "За нас",
     "skills": "Умения",
+    "journey": "Пътят",
     "projects": "Проекти",
     "contact": "Контакти"
   },
@@ -10,7 +11,9 @@
     "badge": "Full-Stack Разработчици",
     "title": "H&M Website Provisioning",
     "subtitle": "Свързване на Кода и Креативността",
-    "cta": "Виж Проектите"
+    "cta": "Виж Проектите",
+    "contact": "Свържете се с нас",
+    "design": "Дизайнери"
   },
   "about": {
     "title": "За нас",

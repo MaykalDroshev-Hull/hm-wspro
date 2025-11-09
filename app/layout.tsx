@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { ToastProvider } from "@/components/ui/toast"
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
+import { LenisProvider } from "@/components/lenis-provider"
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -139,7 +140,7 @@ export default function RootLayout({
         <TranslationProvider>
           <FOUCPreventionWrapper>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-              {children}
+              <LenisProvider>{children}</LenisProvider>
             </ThemeProvider>
           </FOUCPreventionWrapper>
         </TranslationProvider>

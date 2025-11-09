@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "About",
     "skills": "Skills",
+    "journey": "Journey",
     "projects": "Projects",
     "contact": "Contact"
   },
@@ -10,7 +11,9 @@
     "badge": "Full-Stack Developers",
     "title": "H&M Website Provisioning",
     "subtitle": "Bridging Code and Creativity",
-    "cta": "View Projects"
+    "cta": "View Projects",
+    "contact": "Contact Us",
+    "design": "Designers"
   },
   "about": {
     "title": "About Us",
