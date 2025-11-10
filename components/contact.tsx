@@ -36,6 +36,54 @@ const childVariants = {
   },
 }
 
+const AnimatedContactIntro = ({ children }: { children: React.ReactNode }) => {
+  // Ensure children is a string before splitting
+  const text = typeof children === 'string' ? children : String(children)
+  // Split by words
+  const words = text.split(" ")
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.06,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const child = {
+    hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.35 },
+    },
+  }
+
+  return (
+    <motion.p
+      variants={container}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.8 }}
+      className="text-lg text-muted-foreground mb-6"
+    >
+      {words.map((word: string, i: number) => (
+        <motion.span
+          key={i}
+          variants={child}
+          style={{ display: "inline-block", marginRight: "0.25em" }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </motion.p>
+  )
+}
+
 export default function Contact() {
   const { t, locale } = useTranslation()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -126,10 +174,9 @@ export default function Contact() {
           <motion.div variants={childVariants}>
             <TranslationLoader>
               <motion.div variants={containerVariants} className="mb-8">
-                <motion.p variants={childVariants} className="text-lg text-muted-foreground mb-6">
+                <AnimatedContactIntro>
                   {t("contact.intro")}
-                </motion.p>
-
+                </AnimatedContactIntro>
               </motion.div>
             </TranslationLoader>
           </motion.div>

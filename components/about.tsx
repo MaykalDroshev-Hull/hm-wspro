@@ -142,7 +142,7 @@ function BoxCard({ children }: { children: React.ReactNode }) {
     <div className="relative group">
   <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-purple-400 to-cyan-400 dark:from-purple-600 dark:to-cyan-600 opacity-75 blur"></div>
 
-  <div className="relative bg-[#222222] rounded-xl border border-white/10 p-6 group-hover:scale-[1.02] transition-transform duration-300">
+  <div className="relative bg-[#222222] rounded-xl border border-white/10 p-6">
         {children}
       </div>
     </div>

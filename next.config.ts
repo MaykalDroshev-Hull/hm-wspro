@@ -1,10 +1,6 @@
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  experimental: {
-    typedRoutes: true,
-    optimizePackageImports: ['lucide-react', '@vercel/analytics'],
-  },
   images: {
     unoptimized: false,
     formats: ['image/webp', 'image/avif'],

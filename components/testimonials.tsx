@@ -98,7 +98,7 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
              WebkitLineClamp: 3,
              WebkitBoxOrient: 'vertical' as const,
            }}>
-          "{testimonial.content}"
+          &quot;{testimonial.content}&quot;
         </p>
       </div>
     </motion.div>
@@ -178,43 +178,6 @@ function TestimonialsContent() {
       company: tString("testimonials.aychin.company"),
       content: tString("testimonials.aychin.content"),
       avatar: "/images/aseamIcon.ico",
-      rating: 5,
-    },
-  ]
-
-  const evergreenTestimonials: Testimonial[] = [
-    {
-      name: "Nina S.",
-      role: "Marketing Manager",
-      company: "TechCorp",
-      content:
-        "Alex's work exceeded expectations. Their innovative approach and attention to detail are unmatched.",
-      avatar: "/images/15-viki-bg-icon.png",
-      rating: 5,
-    },
-    {
-      name: "Jordan P.",
-      role: "Startup Founder",
-      company: "InnovateLab",
-      content: "They brought fresh ideas and turned our vision into a striking, market-ready brand.",
-      avatar: "/images/aseamIcon.ico",
-      rating: 5,
-    },
-    {
-      name: "Sarah M.",
-      role: "Product Designer",
-      company: "DesignHub",
-      content:
-        "Exceptional creativity and technical skills. The final product was beyond what we imagined.",
-      avatar: "/images/Hristo.jpg",
-      rating: 5,
-    },
-    {
-      name: "Michael R.",
-      role: "CEO",
-      company: "WebSolutions",
-      content: "Professional, reliable, and delivers on time. Highly recommend for any web project.",
-      avatar: "/images/Michael.JPG",
       rating: 5,
     },
   ]
