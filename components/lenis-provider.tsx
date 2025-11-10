@@ -3,6 +3,12 @@
 import { useEffect, useRef, type ReactNode } from "react"
 import Lenis from "lenis"
 
+declare global {
+  interface Window {
+    lenis?: Lenis
+  }
+}
+
 interface LenisProviderProps {
   children: ReactNode
 }
@@ -36,13 +42,11 @@ export function LenisProvider({ children }: LenisProviderProps) {
         lerp: 0.08,
         easing: (t) => 1 - Math.pow(1 - t, 4),
         smoothWheel: true,
-        smoothTouch: false,
         syncTouch: true,
         wheelMultiplier: 1.1,
       })
 
       lenisRef.current = lenis
-      // @ts-expect-error expose for debugging / other components
       window.lenis = lenis
 
       const raf = (time: number) => {
@@ -60,9 +64,7 @@ export function LenisProvider({ children }: LenisProviderProps) {
         lenisRef.current = null
         root.classList.remove("lenis")
         root.classList.remove("lenis-smooth")
-        // @ts-expect-error cleanup global
         if (window.lenis === lenis) {
-          // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
           delete window.lenis
         }
       }
@@ -106,7 +108,7 @@ export function LenisProvider({ children }: LenisProviderProps) {
       const computedStyle = window.getComputedStyle(destination)
       const scrollMarginTop = parseInt(computedStyle.scrollMarginTop || "0", 10) || 0
 
-      lenisRef.current.scrollTo(destination, {
+      lenisRef.current.scrollTo(destination as HTMLElement, {
         offset: -scrollMarginTop,
       })
     }

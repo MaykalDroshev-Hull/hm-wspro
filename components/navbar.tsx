@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Home, UserRound, Sparkles, Rocket, Mail, Star, Code, Briefcase, MessageSquare, Route } from "lucide-react"
+import { Home, UserRound, Sparkles, Rocket, Mail, Star, Route, MessageSquare } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 import { TranslationLoader } from "./translation-loader"
 
@@ -59,6 +59,7 @@ function NavLinks({ activeLink, onActivate }: NavLinksProps) {
     { href: "#skills" as const, key: "nav.skills", icon: Sparkles, activeIcon: Sparkles },
     { href: "#projects" as const, key: "nav.projects", icon: Rocket, activeIcon: Rocket },
     { href: "#journey" as const, key: "nav.journey", icon: Route, activeIcon: Route },
+    { href: "#testimonials" as const, key: "nav.testimonials", icon: MessageSquare, activeIcon: MessageSquare },
     { href: "#contact" as const, key: "nav.contact", icon: Mail, activeIcon: Mail },
   ]
 
@@ -85,7 +86,6 @@ function NavLinks({ activeLink, onActivate }: NavLinksProps) {
   return (
     <div className="flex items-center gap-2 md:gap-3">
       {links.map((link) => {
-        const Icon = link.icon
         const isActive = activeLink === link.href
 
         const CurrentIcon = isActive ? link.activeIcon : link.icon

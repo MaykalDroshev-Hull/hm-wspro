@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Github, Linkedin, Mail, MapPin, Send, Facebook } from "lucide-react"
+import { Send } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 import { toast } from "sonner"
 import { TranslationLoader } from "./translation-loader"
@@ -15,7 +15,7 @@ const sectionMotionProps = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
   transition: { duration: 0.6, ease: easeOut },
-  viewport: { once: true, amount: 0.1, margin: "0px 0px -100px 0px" },
+  viewport: { once: true, amount: 0.05, margin: "0px 0px -100px 0px" },
 }
 
 const containerVariants = {
@@ -41,8 +41,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
-    message: "",
+    telephone: "",
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -82,7 +81,7 @@ export default function Contact() {
         )
         
         // Reset form
-        setFormData({ name: "", email: "", message: "" })
+        setFormData({ name: "", telephone: "" })
       } else {
         throw new Error('Failed to send message')
       }
@@ -113,7 +112,7 @@ export default function Contact() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.05 }}
       >
         <motion.div variants={childVariants}>
           <TranslationLoader>
@@ -131,45 +130,6 @@ export default function Contact() {
                   {t("contact.intro")}
                 </motion.p>
 
-                <motion.div variants={containerVariants} className="space-y-4">
-                  <motion.div variants={childVariants} className="flex items-center gap-3">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700">
-                      <Mail className="h-5 w-5 text-white" />
-                    </div>
-                    <span className="text-muted-foreground">{t("contact.email")}</span>
-                  </motion.div>
-
-                  <motion.div variants={childVariants} className="flex items-center gap-3">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700">
-                      <MapPin className="h-5 w-5 text-white" />
-                    </div>
-                    <span className="text-muted-foreground">{t("contact.location")}</span>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-
-              <motion.div variants={containerVariants}>
-                <h3 className="text-xl font-bold mb-4 text-card-foreground">{t("contact.connectTitle")}</h3>
-                
-                {/* H (Hristo) Contact Row */}
-                <motion.div variants={childVariants} className="mb-6">
-                  <div className="flex items-center gap-4">
-                    <h4 className="text-lg font-semibold text-purple-400 dark:text-purple-300">H</h4>
-                    <SocialLink icon={<Github />} href="https://github.com/icakaxx" label="Hristo GitHub" />
-                    <SocialLink icon={<Linkedin />} href="https://www.linkedin.com/in/hristo-kalchev-933456200/" label="Hristo LinkedIn" />
-                    <SocialLink icon={<Facebook />} href="https://www.facebook.com/BlameH1M" label="Hristo Facebook" />
-                  </div>
-                </motion.div>
-
-                {/* M (Michael) Contact Row */}
-                <motion.div variants={childVariants}>
-                  <div className="flex items-center gap-4">
-                    <h4 className="text-lg font-semibold text-cyan-400 dark:text-cyan-300">M</h4>
-                    <SocialLink icon={<Github />} href="https://github.com/MaykalDroshev-Hull" label="Michael GitHub" />
-                    <SocialLink icon={<Linkedin />} href="https://www.linkedin.com/in/maykaldroshev/" label="Michael LinkedIn" />
-                    <SocialLink icon={<Facebook />} href="https://www.facebook.com/Maikito007/" label="Michael Facebook" />
-                  </div>
-                </motion.div>
               </motion.div>
             </TranslationLoader>
           </motion.div>
@@ -177,7 +137,7 @@ export default function Contact() {
           <motion.div variants={childVariants}>
             <div className="relative">
               <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-purple-400 to-cyan-400 dark:from-purple-600 dark:to-cyan-600 opacity-75 blur"></div>
-              <form onSubmit={handleSubmit} className="relative bg-card/80 backdrop-blur-sm rounded-lg p-6 md:p-8">
+              <form onSubmit={handleSubmit} className="relative bg-[#222222] rounded-lg p-6 md:p-8">
                 <TranslationLoader>
                   <motion.div variants={containerVariants} className="space-y-4">
                     <motion.div variants={childVariants} className="mb-4">
@@ -197,14 +157,14 @@ export default function Contact() {
                     </motion.div>
 
                     <motion.div variants={childVariants} className="mb-4">
-                      <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">
-                        {t("contact.form.email")}
+                      <label htmlFor="telephone" className="block text-sm font-medium text-muted-foreground mb-1">
+                        {t("contact.form.telephone")}
                       </label>
                       <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
+                        type="tel"
+                        id="telephone"
+                        name="telephone"
+                        value={formData.telephone}
                         onChange={handleChange}
                         required
                         disabled={isSubmitting}
@@ -212,23 +172,8 @@ export default function Contact() {
                       />
                     </motion.div>
 
-                    <motion.div variants={childVariants} className="mb-6">
-                      <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-1">
-                        {t("contact.form.message")}
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        disabled={isSubmitting}
-                        rows={5}
-                        className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-none"
-                      />
-                    </motion.div>
 
-                    <motion.div variants={childVariants}>
+                    <motion.div variants={childVariants} className="mt-6">
                       <button
                         type="submit"
                         disabled={isSubmitting}
@@ -258,14 +203,3 @@ export default function Contact() {
   )
 }
 
-function SocialLink({ icon, href, label }: { icon: React.ReactNode; href: string; label: string }) {
-  return (
-    <a
-      href={href}
-      aria-label={label}
-      className="flex items-center justify-center w-12 h-12 rounded-full bg-muted text-muted-foreground hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white transition-all duration-300"
-    >
-      {icon}
-    </a>
-  )
-}

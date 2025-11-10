@@ -1,11 +1,13 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
-    "skills": "Skills",
-    "journey": "Journey",
+    "about": "About Us",
+    "skills": "Tech Stack",
     "projects": "Projects",
-    "contact": "Contact"
+    "testimonials": "Testimonials",
+    "journey": "Our Journey",
+    "contact": "Get In Touch",
+    "navigation": "Navigation"
   },
   "hero": {
     "badge": "Full-Stack Developers",
@@ -17,7 +19,8 @@
   },
   "about": {
     "title": "About Us",
-    "intro": "Hi, We are Hristo and Michael, junior full-stack developers based in Bulgaria and United Kingdom with a background in Computer Science, Software Engineering, Telecommunications and a passion for building user-centric web applications.",
+    "introTitle": "We are Hristo and Michael.",
+    "intro": "We are web designers based in Bulgaria and United Kingdom with a background in Software Engineering, Telecommunications and a passion for building user-centric web applications.",
     "learning": "We started learning to code in 2019, transitioning from general computer science to software development. After completing Bachelor's degree in our courses of study, We began working on real-world projects using Next.js and React.js.",
     "specialization": "We specialize in full-stack development, crafting fast and easy-to-use web applications. We're currently working at many interesting projects, where we contribute to dynamic systems and continuously grow our skills.",
     "hobbies": "Outside of coding, We enjoy being active, and we're exploring Artifical Intelligence to bring creativity into our projects.",
@@ -122,6 +125,7 @@
   },
   "timeline": {
     "title": "Our Journey",
+    "present": "Present",
     "milestones": {
       "2019": {
         "title": "Started Learning Web Development",
@@ -166,18 +170,20 @@
   },
   "contact": {
     "title": "Get In Touch",
-    "intro": "Have a project in mind or want to discuss a potential collaboration? Feel free to reach out using the contact form or through any of our social channels.",
-    "email": "hm.websiteprovisioning@gmail.com",
-    "location": "Bulgaria/United Kingdom",
-    "connectTitle": "Connect With Us",
+    "intro": "Have a great idea? Let's discuss it and make it a reality.",
     "form": {
       "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "submit": "Send Message"
+      "telephone": "Telephone",
+      "submit": "Send"
     }
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "projects": {
+      "viki": "15-viki-bg",
+      "aseam": "ASEA-M",
+      "pizza": "Pizza Stop",
+      "kasameri": "Kasameri EOOD"
+    }
   }
 }

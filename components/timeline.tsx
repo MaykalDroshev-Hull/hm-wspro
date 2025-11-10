@@ -9,7 +9,7 @@ const sectionMotionProps = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
   transition: { duration: 0.6, ease: easeOut },
-  viewport: { once: true, amount: 0.1, margin: "0px 0px -100px 0px" },
+  viewport: { once: true, amount: 0.05, margin: "0px 0px -100px 0px" },
 }
 
 const containerVariants = {
@@ -40,7 +40,7 @@ export default function Timeline() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.05 }}
       >
         <motion.div variants={childVariants}>
           <TranslationLoader>
@@ -96,7 +96,7 @@ function TimelineContent() {
     },
     {
       id: 6,
-      year: "Present",
+      year: t("timeline.present"),
       title: t("timeline.milestones.present.title"),
       description: t("timeline.milestones.present.description"),
     },
@@ -121,15 +121,18 @@ function TimelineContent() {
             <motion.div variants={childVariants} className="md:w-1/2 pl-8 md:pl-0 md:pr-8">
               <motion.div
                 variants={childVariants}
-                className={`p-5 rounded-lg bg-card/80 backdrop-blur-sm border border-border ${
+                className={`relative ${
                   index % 2 === 0 ? "md:ml-8" : "md:mr-8"
                 }`}
               >
-                <div className="inline-block px-3 py-1 mb-2 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 backdrop-blur-md border border-purple-300/40 dark:border-purple-500/20">
-                  <span className="text-sm font-medium text-muted-foreground">{milestone.year}</span>
+                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-purple-400 to-cyan-400 dark:from-purple-600 dark:to-cyan-600 opacity-75 blur"></div>
+                <div className="relative p-5 rounded-lg bg-[#222222] border border-white/10">
+                  <div className="inline-block px-3 py-1 mb-2 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 backdrop-blur-md border border-purple-300/40 dark:border-purple-500/20">
+                    <span className="text-sm font-medium text-muted-foreground">{milestone.year}</span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-card-foreground">{milestone.title}</h3>
+                  <p className="text-muted-foreground">{milestone.description}</p>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-card-foreground">{milestone.title}</h3>
-                <p className="text-muted-foreground">{milestone.description}</p>
               </motion.div>
             </motion.div>
 

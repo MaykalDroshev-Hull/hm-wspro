@@ -42,7 +42,27 @@ export default function Hero() {
   const containerControls = useAnimation()
   const isSectionInView = useInView(sectionRef, { margin: "-10% 0px", amount: 0.2, once: true })
   const { isReady } = useTranslationReady()
-  const { t } = useTranslation()
+  const {} = useTranslation()
+
+  function smoothScroll(target: string) {
+    const element = document.querySelector(target)
+    if (!element) {
+      return
+    }
+
+    const lenisWindow = window as typeof window & {
+      lenis?: { scrollTo: (destination: Element | string, options?: { offset?: number }) => void }
+    }
+
+    const scrollMarginTop = parseInt(window.getComputedStyle(element).scrollMarginTop || "0", 10) || 0
+
+    if (lenisWindow.lenis) {
+      lenisWindow.lenis.scrollTo(element, { offset: -scrollMarginTop })
+      return
+    }
+
+    element.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
 
   useEffect(() => {
     if (isReady && isSectionInView) {
@@ -348,6 +368,10 @@ export default function Hero() {
           href="#projects"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-200/60 to-blue-200/60 dark:from-purple-900/30 dark:to-blue-900/30 border border-purple-300/40 dark:border-purple-500/20 text-purple-900 dark:text-purple-100 font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(147,51,234,0.35)] hover:from-purple-100/80 hover:to-blue-200/80 dark:hover:from-purple-800/40 dark:hover:to-blue-800/40 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
           aria-label={`${t("hero.cta")} - Navigate to projects section`}
+          onClick={(event) => {
+            event.preventDefault()
+            smoothScroll("#projects")
+          }}
         >
           {t("hero.cta")}
         </Link>
@@ -355,6 +379,10 @@ export default function Hero() {
           href="#contact"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 dark:from-purple-600 dark:to-blue-600 text-white font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(124,58,237,0.5)] hover:from-purple-400 hover:to-blue-400 dark:hover:from-purple-500 dark:hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
           aria-label={`${t("hero.contact")} - Navigate to contact section`}
+          onClick={(event) => {
+            event.preventDefault()
+            smoothScroll("#contact")
+          }}
         >
           {t("hero.contact")}
         </Link>

@@ -20,7 +20,7 @@ const sectionMotionProps = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
   transition: { duration: 0.6, ease: easeOut },
-  viewport: { once: true, amount: 0.1, margin: "0px 0px -100px 0px" },
+  viewport: { once: true, amount: 0.05, margin: "0px 0px -100px 0px" },
 }
 
 const containerVariants = {
@@ -53,20 +53,11 @@ export default function Projects() {
 
 function ProjectsContent() {
   const { t, tString } = useTranslation()
-  const { isReady } = useTranslationReady()
+  const {} = useTranslationReady()
 
   const projects = [
     {
       id: 1,
-      titleKey: "projects.hvac.title",
-      subtitleKey: "projects.hvac.subtitle",
-      descriptionKey: "projects.hvac.description",
-      image: "/images/15viki-bg-desktop.jpg",
-      tags: ["Next.js", "Supabase", "Stripe", "PostgreSQL", "Google Maps API"],
-      detailsKey: "projects.hvac.details",
-    },
-    {
-      id: 2,
       titleKey: "projects.aseam.title",
       subtitleKey: "projects.aseam.subtitle",
       descriptionKey: "projects.aseam.description",
@@ -75,13 +66,22 @@ function ProjectsContent() {
       detailsKey: "projects.aseam.details",
     },
     {
-      id: 3,
+      id: 2,
       titleKey: "projects.pizzaStop.title",
       subtitleKey: "projects.pizzaStop.subtitle",
       descriptionKey: "projects.pizzaStop.description",
       image: "/images/pizza-stop.png",
       tags: ["Next.js 15", "Supabase", "Google Maps API", "Thermal Printer", "Email System"],
       detailsKey: "projects.pizzaStop.details",
+    },
+    {
+      id: 3,
+      titleKey: "projects.hvac.title",
+      subtitleKey: "projects.hvac.subtitle",
+      descriptionKey: "projects.hvac.description",
+      image: "/images/15viki-bg-desktop.jpg",
+      tags: ["Next.js", "Supabase", "Stripe", "PostgreSQL", "Google Maps API"],
+      detailsKey: "projects.hvac.details",
     },
     {
       id: 4,
@@ -164,7 +164,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 
   return (
-    <motion.div variants={childVariants} className="group relative overflow-hidden rounded-lg transition-all duration-500 hover:transform hover:scale-[1.02]">
+    <motion.div variants={childVariants} className="group relative overflow-hidden rounded-lg transition-all duration-500">
       <div className="relative bg-card rounded-lg overflow-hidden">
         <div className="relative overflow-hidden" style={{ aspectRatio: 'auto 2400 / 1345' }}
         >
@@ -172,7 +172,7 @@ function ProjectCard({ project }: { project: Project }) {
             src={project.image || "/placeholder.svg"}
             alt={tString(project.titleKey)}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110" 
+            className="object-cover transition-transform duration-500" 
 
           /></div>
           <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60">

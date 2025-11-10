@@ -2,11 +2,10 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { Code2, Database, Layers, Server, Zap, Database as DatabaseIcon, FileCode, Globe2, CreditCard } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 import { TranslationLoader } from "./translation-loader"
 import { motion } from "framer-motion"
+import TechCarousel from "./TechCarousel"
 
 const easeOut = "easeOut" as const
 
@@ -14,7 +13,7 @@ const sectionMotionProps = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
   transition: { duration: 0.6, ease: easeOut },
-  viewport: { once: true, amount: 0.1, margin: "0px 0px -100px 0px" },
+  viewport: { once: true, amount: 0.05, margin: "0px 0px -100px 0px" },
 }
 
 const containerVariants = {
@@ -36,7 +35,7 @@ const childVariants = {
 }
 
 export default function Skills() {
-  const { t, tString } = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <motion.section id="skills" className="py-20 bg-gradient-to-b from-muted to-background" {...sectionMotionProps}>
@@ -45,7 +44,7 @@ export default function Skills() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.05 }}
       >
         <motion.div variants={childVariants}>
           <TranslationLoader>
@@ -56,142 +55,10 @@ export default function Skills() {
         </motion.div>
 
         <motion.div variants={childVariants}>
-          <TranslationLoader>
-            <motion.div variants={containerVariants} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              <motion.div variants={childVariants}>
-                <SkillTile
-                  icon={<Code2 className="h-8 w-8" />}
-                  name="JavaScript"
-                  color="from-yellow-400 to-amber-400 dark:from-yellow-500 dark:to-amber-500"
-                  description={tString("skills.javascript")}
-                />
-              </motion.div>
-              <motion.div variants={childVariants}>
-                <SkillTile
-                  icon={<FileCode className="h-8 w-8" />}
-                  name="TypeScript"
-                  color="from-blue-400 to-indigo-400 dark:from-blue-500 dark:to-indigo-500"
-                  description={tString("skills.typescript")}
-                />
-              </motion.div>
-              <motion.div variants={childVariants}>
-                <SkillTile
-                  icon={<Zap className="h-8 w-8" />}
-                  name="Vercel"
-                  color="from-black to-gray-600 dark:from-white dark:to-gray-400"
-                  description={tString("skills.vercel")}
-                />
-              </motion.div>
-              <motion.div variants={childVariants}>
-                <SkillTile
-                  icon={<DatabaseIcon className="h-8 w-8" />}
-                  name="Supabase"
-                  color="from-green-400 to-emerald-400 dark:from-green-500 dark:to-emerald-500"
-                  description={tString("skills.supabase")}
-                />
-              </motion.div>
-              <motion.div variants={childVariants}>
-                <SkillTile
-                  icon={<CreditCard className="h-8 w-8" />}
-                  name="Stripe"
-                  color="from-indigo-400 to-purple-400 dark:from-indigo-500 dark:to-purple-500"
-                  description={tString("skills.stripe")}
-                />
-              </motion.div>
-              <motion.div variants={childVariants}>
-                <SkillTile
-                  icon={<Code2 className="h-8 w-8" />}
-                  name="C#"
-                  color="from-purple-400 to-violet-400 dark:from-purple-500 dark:to-violet-500"
-                  description={tString("skills.csharp")}
-                />
-              </motion.div>
-              <motion.div variants={childVariants}>
-                <SkillTile
-                  icon={<Globe2 className="h-8 w-8" />}
-                  name="Java"
-                  color="from-orange-400 to-red-400 dark:from-orange-500 dark:to-red-500"
-                  description={tString("skills.java")}
-                />
-              </motion.div>
-              <motion.div variants={childVariants}>
-                <SkillTile
-                  icon={<Database className="h-8 w-8" />}
-                  name="T-SQL"
-                  color="from-blue-400 to-cyan-400 dark:from-blue-500 dark:to-cyan-500"
-                  description={tString("skills.tsql")}
-                />
-              </motion.div>
-              <motion.div variants={childVariants}>
-                <SkillTile
-                  icon={<Layers className="h-8 w-8" />}
-                  name="Tailwind"
-                  color="from-cyan-400 to-blue-400 dark:from-cyan-500 dark:to-blue-500"
-                  description={tString("skills.tailwind")}
-                />
-              </motion.div>
-              <motion.div variants={childVariants}>
-                <SkillTile
-                  icon={<Server className="h-8 w-8" />}
-                  name="REST APIs"
-                  color="from-purple-400 to-violet-400 dark:from-purple-600 dark:to-violet-600"
-                  description={tString("skills.restApis")}
-                />
-              </motion.div>
-            </motion.div>
-          </TranslationLoader>
+          <TechCarousel />
         </motion.div>
       </motion.div>
     </motion.section>
   )
 }
 
-function SkillTile({
-  icon,
-  name,
-  color,
-  description,
-}: {
-  icon: React.ReactNode
-  name: string
-  color: string
-  description: string
-}) {
-  const [isHovered, setIsHovered] = useState(false)
-  const [isClicked, setIsClicked] = useState(false)
-
-  const handleMouseEnter = () => setIsHovered(true)
-  const handleMouseLeave = () => setIsHovered(false)
-  const handleClick = () => setIsClicked(!isClicked)
-  const handleTouchStart = () => setIsClicked(!isClicked)
-
-  const isActive = isHovered || isClicked
-
-  return (
-    <div 
-      className="relative group cursor-pointer" 
-      onMouseEnter={handleMouseEnter} 
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
-      onTouchStart={handleTouchStart}
-    >
-      <div
-        className={`absolute -inset-0.5 bg-gradient-to-r ${color} rounded-lg opacity-50 group-hover:opacity-100 blur transition duration-300`}
-      ></div>
-      <div className="relative flex flex-col items-center justify-center p-6 bg-card/80 backdrop-blur-sm rounded-lg h-full transition-all duration-300 group-hover:transform group-hover:scale-105">
-        {!isActive && (
-          <>
-            <div className="text-card-foreground mb-3">{icon}</div>
-            <h3 className="font-medium text-card-foreground">{name}</h3>
-          </>
-        )}
-
-        {isActive && (
-          <div className="absolute inset-0 flex items-center justify-center bg-card/95 rounded-lg p-4 transition-opacity duration-300">
-            <p className="text-sm text-center text-muted-foreground">{description}</p>
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
