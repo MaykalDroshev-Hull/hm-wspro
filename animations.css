@@ -1,0 +1,104 @@
+/**
+ * ANIMATIONS AND SMOOTH SCROLLING CSS
+ * 
+ * Add this CSS to your globals.css or import it in your main CSS file
+ * 
+ * Usage:
+ *   @import './animations.css';
+ *   OR
+ *   Copy the contents into your globals.css
+ */
+
+/* ============================================================================
+   LENIS SMOOTH SCROLLING STYLES
+   ============================================================================ */
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ============================================================================
+   SCROLL ANIMATIONS
+   ============================================================================ */
+
+@keyframes scroll {
+  0% { 
+    transform: translateX(0); 
+  }
+  100% { 
+    transform: translateX(-50%); 
+  }
+}
+
+.animate-scroll {
+  animation: scroll 70s linear infinite;
+}
+
+/* ============================================================================
+   FADE IN ANIMATIONS (Optional - if you want pure CSS animations)
+   ============================================================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* ============================================================================
+   STAGGER ANIMATION DELAYS (Helper classes)
+   ============================================================================ */
+
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+
