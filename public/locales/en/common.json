@@ -115,6 +115,21 @@
         "Viber integration for quick customer communication"
       ]
     },
+    "pgitu": {
+      "title": "PGITU - Lovech",
+      "subtitle": "School",
+      "description": "Modern educational institution website featuring school information, news, events, and resources for students and parents.",
+      "details": [
+        "Professional school website with modern and accessible design",
+        "Comprehensive information about educational programs and curriculum",
+        "News and announcements section for school events and activities",
+        "Student and parent resources with important documents and links",
+        "Faculty and staff directory with contact information",
+        "Photo gallery showcasing school facilities and student life",
+        "Multi-language support for diverse student population",
+        "Responsive design optimized for all devices"
+      ]
+    },
     "comingSoon": {
       "title": "Coming Soon",
       "subtitle": "New Project",

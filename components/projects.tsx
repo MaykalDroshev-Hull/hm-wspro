@@ -94,6 +94,15 @@ function ProjectsContent() {
     },
     {
       id: 5,
+      titleKey: "projects.pgitu.title",
+      subtitleKey: "projects.pgitu.subtitle",
+      descriptionKey: "projects.pgitu.description",
+      image: "/images/pgitu-desktop.png",
+      tags: ["Next.js 15", "TypeScript", "Responsive Design", "Educational Platform"],
+      detailsKey: "projects.pgitu.details",
+    },
+    {
+      id: 6,
       titleKey: "projects.comingSoon.title",
       subtitleKey: "projects.comingSoon.subtitle",
       descriptionKey: "projects.comingSoon.description",
