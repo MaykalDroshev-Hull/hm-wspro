@@ -9,6 +9,8 @@ import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { LenisProvider } from "@/components/lenis-provider"
 
+import { MatrixBackground } from "@/components/ui/matrix-background"
+
 const inter = Inter({ 
   subsets: ["latin"],
   display: 'swap',
@@ -137,6 +139,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://vercel.live" />
       </head>
       <body className={`${inter.className} antialiased`}>
+        <MatrixBackground />
+        <div className="fixed inset-0 z-[-40] bg-gradient-to-b from-black/80 via-black/50 to-black/90 pointer-events-none" />
         <TranslationProvider>
           <FOUCPreventionWrapper>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>

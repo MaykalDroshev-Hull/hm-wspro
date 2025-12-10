@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Home, UserRound, Sparkles, Rocket, Mail, Star, Route, MessageSquare } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 import { TranslationLoader } from "./translation-loader"
+import LanguageSwitcher from "./language-switcher"
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("#home")
@@ -31,11 +32,32 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center">
-      <div className="rounded-full border border-white/10 bg-white/20 px-2 py-1 md:px-3 md:py-2 shadow-[0_0_35px_rgba(167,139,250,0.25)] backdrop-blur-xl">
-        <TranslationLoader>
-          <NavLinks activeLink={activeLink} onActivate={setActiveLink} />
-        </TranslationLoader>
+    <nav className="fixed top-4 md:top-6 left-0 right-0 z-50 px-4">
+      {/* Desktop: side-by-side layout */}
+      <div className="hidden md:flex items-center justify-center gap-3">
+        <div className="rounded-full border border-white/10 bg-black/40 px-3 py-2 shadow-[0_0_20px_rgba(74,222,128,0.1)] backdrop-blur-xl">
+          <TranslationLoader>
+            <NavLinks activeLink={activeLink} onActivate={setActiveLink} />
+          </TranslationLoader>
+        </div>
+        
+        {/* Language Switcher */}
+        <LanguageSwitcher />
+      </div>
+
+      {/* Mobile: stacked layout with language switcher on top-right */}
+      <div className="md:hidden flex flex-col items-center gap-2">
+        {/* Language switcher - top right corner on mobile */}
+        <div className="absolute top-0 right-4">
+          <LanguageSwitcher />
+        </div>
+        
+        {/* Navigation icons - centered */}
+        <div className="rounded-full border border-white/10 bg-black/40 px-2 py-1 shadow-[0_0_20px_rgba(74,222,128,0.1)] backdrop-blur-xl">
+          <TranslationLoader>
+            <NavLinks activeLink={activeLink} onActivate={setActiveLink} />
+          </TranslationLoader>
+        </div>
       </div>
     </nav>
   )
@@ -102,7 +124,7 @@ function NavLinks({ activeLink, onActivate }: NavLinksProps) {
             }}
             className={`group flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full transition-all duration-500 ${
               isActive
-                ? "bg-white/25 text-white shadow-[0_0_24px_rgba(15,23,42,0.35)]"
+                ? "bg-green-500/20 text-green-400 shadow-[0_0_15px_rgba(74,222,128,0.25)]"
                 : "text-white/60 hover:text-white/90"
             }`}
           >

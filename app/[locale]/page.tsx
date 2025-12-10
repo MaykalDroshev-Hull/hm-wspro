@@ -2,8 +2,10 @@ import { notFound } from 'next/navigation'
 import { isValidLocale, getLocaleInfo } from '@/lib/locale-utils'
 import { preloadServerTranslations } from '@/lib/server-locale-utils'
 import Hero from "@/components/hero"
+import ProcessSection from "@/components/process-section"
 import Navbar from "@/components/navbar"
 import About from "@/components/about"
+import WhyUs from "@/components/why-us"
 import Skills from "@/components/skills"
 import Projects from "@/components/projects"
 import Timeline from "@/components/timeline"

@@ -17,6 +17,23 @@
     "contact": "Contact Us",
     "design": "Designers"
   },
+  "process": {
+    "title": "How We Work",
+    "subtitle": "From idea to reality in three simple steps",
+    "step1": "Planning",
+    "step1Desc": "We analyze your needs and create a detailed roadmap.",
+    "step2": "Designing",
+    "step2Desc": "We craft modern, user-centric designs and write clean code.",
+    "step3": "Launch",
+    "step3Desc": "Your website goes live, fully optimized and ready to grow.",
+    "cta": "Book a Free Consultation"
+  },
+  "whyUs": {
+    "title": "Why Choose Us",
+    "headline": "We build websites that help your business grow.",
+    "description": "We are not just coders; we are your digital partners. We combine technical expertise with creative design to deliver websites that look great and perform even better.",
+    "cta": "Start Your Project"
+  },
   "about": {
     "title": "About Us",
     "introTitle": "We are Hristo and Michael.",
