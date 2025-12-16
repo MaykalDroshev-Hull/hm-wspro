@@ -112,10 +112,10 @@ export default function About() {
           {/* Images box - spans full width on desktop */}
           <motion.div variants={childVariants} className="lg:col-span-3">
             <TranslationLoader>
-              <BoxCard className="overflow-hidden">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start justify-items-center text-center">
+              <BoxCard className="overflow-hidden" contentClassName="border-none flex flex-col items-center justify-center text-center">
+                <div className="flex flex-col gap-6 items-center text-center w-full">
                    {/* Text and Profiles */}
-                  <div className="md:col-span-7 flex flex-col gap-8 items-center text-center">
+                  <div className="flex flex-col gap-8 items-center text-center max-w-3xl">
                      <div className="space-y-3 md:space-y-4 w-full">
                         <RichText html={tString("about.introTitle")} className="text-2xl font-bold text-white text-center" />
                         <RichText html={tString("about.intro")} className="text-lg text-muted-foreground leading-relaxed text-center" />
@@ -132,23 +132,6 @@ export default function About() {
                         </div>
                      </div>
                   </div>
-
-                   {/* Illustration */}
-                   <div className="md:col-span-5 relative h-64 sm:h-72 md:h-full min-h-[260px] rounded-xl overflow-hidden border border-white/10 group-hover:border-green-500/30 transition-colors duration-500">
-                      <Image 
-                        src="/images/collage-images/cartoon-illustration-of-a-web-designer-thinking.jpg"
-                        alt="Web Wizards"
-                        fill
-                        sizes="(min-width: 1024px) 40vw, 100vw"
-                        className="object-cover hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <p className="text-white font-medium text-sm bg-black/60 backdrop-blur-md p-2 rounded-lg border border-white/10 inline-block">
-                          Building your digital future
-                        </p>
-                      </div>
-                   </div>
                 </div>
               </BoxCard>
             </TranslationLoader>
@@ -219,11 +202,11 @@ function RichText({ html, className }: { html: string; className?: string }) {
   return <div className={className} dangerouslySetInnerHTML={{ __html: html }} />
 }
 
-function BoxCard({ children, className }: { children: React.ReactNode, className?: string }) {
+function BoxCard({ children, className, contentClassName }: { children: React.ReactNode, className?: string, contentClassName?: string }) {
   return (
     <div className={`relative group h-full ${className}`}>
       <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-green-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
-      <div className="relative bg-black/40 backdrop-blur-sm rounded-xl border border-white/10 p-6 h-full hover:border-white/20 transition-colors duration-300">
+      <div className={`relative bg-black/40 backdrop-blur-sm rounded-xl border border-white/10 p-6 h-full hover:border-white/20 transition-colors duration-300 ${contentClassName ?? ""}`}>
         {children}
       </div>
     </div>
