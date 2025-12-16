@@ -113,10 +113,10 @@ export default function About() {
           <motion.div variants={childVariants} className="lg:col-span-3">
             <TranslationLoader>
               <BoxCard className="overflow-hidden">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start justify-items-center text-center">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start justify-items-center text-center">
                    {/* Text and Profiles */}
                   <div className="md:col-span-7 flex flex-col gap-8 items-center text-center">
-                     <div className="space-y-4 w-full">
+                     <div className="space-y-3 md:space-y-4 w-full">
                         <RichText html={tString("about.introTitle")} className="text-2xl font-bold text-white text-center" />
                         <RichText html={tString("about.intro")} className="text-lg text-muted-foreground leading-relaxed text-center" />
                      </div>
