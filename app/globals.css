@@ -119,6 +119,17 @@
   body {
     @apply bg-transparent text-white;
   }
+
+  /* Offset anchored sections so the fixed navbar does not cover headings on mobile */
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    section[id] {
+      scroll-margin-top: 7rem;
+    }
+  }
 }
 
 /* FOUC Prevention - Hide content until translations are ready */

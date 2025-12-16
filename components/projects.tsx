@@ -43,7 +43,7 @@ const childVariants = {
 
 export default function Projects() {
   return (
-    <motion.section id="projects" className="py-20 bg-background" {...sectionMotionProps}>
+    <motion.section id="projects" className="py-16 md:py-20 bg-background" {...sectionMotionProps}>
       <TranslationLoader>
         <ProjectsContent />
       </TranslationLoader>
@@ -123,7 +123,7 @@ function ProjectsContent() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
-          className="grid md:grid-cols-1 lg:grid-cols-1 gap-8"
+          className="grid md:grid-cols-1 lg:grid-cols-1 gap-6 sm:gap-8"
         >
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
@@ -136,6 +136,7 @@ function ProjectsContent() {
 
 function ProjectCard({ project }: { project: Project }) {
   const { t, tString } = useTranslation()
+  const description = t(project.descriptionKey)
 
   // Get the details array from translations - access the raw translations object
   const { translations } = useTranslation()
@@ -169,46 +170,56 @@ function ProjectCard({ project }: { project: Project }) {
       }
     }
   }
-  
 
+  const detailPreview = detailsArray.slice(0, 3)
 
   return (
-    <motion.div variants={childVariants} className="group relative overflow-hidden rounded-lg transition-all duration-500">
-      <div className="relative bg-card rounded-lg overflow-hidden">
-        <div className="relative overflow-hidden" style={{ aspectRatio: 'auto 2400 / 1345' }}
-        >
+    <motion.div
+      variants={childVariants}
+      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card/60 backdrop-blur-sm shadow-lg transition-all duration-500 hover:border-white/20"
+    >
+      <div className="relative overflow-hidden">
+        <div className="relative aspect-[16/9] w-full">
           <Image
             src={project.image || "/placeholder.svg"}
             alt={tString(project.titleKey)}
             fill
-            className="object-cover transition-transform duration-500" 
-
-          /></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60">
+            sizes="(min-width: 1024px) 900px, 100vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-80" />
         </div>
-</div>
-          <div className="flex justify-between items-center">
-            <h3 className="text-xl font-bold text-card-foreground">{t(project.titleKey)}</h3>
-            <p className="text-sm text-muted-foreground">
-              {t(project.subtitleKey)}
-            </p>
-          </div>
+      </div>
 
-          {/* Hidden elements - keeping the data but not displaying */}
-          <div style={{ display: 'none' }}>
-            <p>{t(project.descriptionKey)}</p>
-            <div>
-              {project.tags.map((tag: string) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </div>
-            <ul>
-              {detailsArray.map((detail, index) => (
-                <li key={index}>{detail}</li>
-              ))}
-            </ul>
-          </div>
-      
+      <div className="p-5 md:p-6 space-y-3">
+        <div className="flex flex-col gap-1">
+          <h3 className="text-lg md:text-xl font-semibold text-card-foreground">{t(project.titleKey)}</h3>
+          <p className="text-sm text-muted-foreground">
+            {t(project.subtitleKey)}
+          </p>
+        </div>
+
+        <p className="text-sm text-gray-300 line-clamp-3">{description}</p>
+
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map((tag: string) => (
+            <span
+              key={tag}
+              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-gray-200"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {detailPreview.length > 0 ? (
+          <ul className="space-y-1 text-xs text-gray-400 list-disc list-inside">
+            {detailPreview.map((detail, index) => (
+              <li key={index} className="line-clamp-1">{detail}</li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
     </motion.div>
   )
 }

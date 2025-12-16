@@ -60,7 +60,7 @@ const childVariants = {
 function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
   return (
     <motion.div
-      className="relative w-full max-w-sm mx-auto md:max-w-none mb-6"
+      className="relative w-full max-w-full md:max-w-none mb-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -116,7 +116,7 @@ function ScrollingColumn({ testimonials, direction, speed = 30, isMobile = false
   const initialOffset = direction === "down" ? "-50%" : "0%"
 
   return (
-    <div className="relative h-96 md:h-[500px] overflow-hidden">
+    <div className="relative h-[420px] md:h-[500px] overflow-hidden">
       {/* Fade gradients at top and bottom */}
       <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-background to-transparent z-10" />
       <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-background to-transparent z-10" />
@@ -144,9 +144,9 @@ function ScrollingColumn({ testimonials, direction, speed = 30, isMobile = false
 
 export default function Testimonials() {
   return (
-    <motion.section id="testimonials" className="py-20 bg-background" {...sectionMotionProps}>
+    <motion.section id="testimonials" className="py-16 md:py-20 bg-background" {...sectionMotionProps}>
       <motion.div
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 sm:px-6 lg:px-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"

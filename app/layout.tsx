@@ -138,7 +138,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://vercel.live" />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
         <MatrixBackground />
         <div className="fixed inset-0 z-[-40] bg-gradient-to-b from-black/80 via-black/50 to-black/90 pointer-events-none" />
         <TranslationProvider>

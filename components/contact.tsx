@@ -154,9 +154,9 @@ export default function Contact() {
   }
 
   return (
-    <motion.section id="contact" className="py-20 bg-gradient-to-b from-background to-muted" {...sectionMotionProps}>
+    <motion.section id="contact" className="py-16 md:py-20 bg-gradient-to-b from-background to-muted" {...sectionMotionProps}>
       <motion.div
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 sm:px-6 lg:px-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"

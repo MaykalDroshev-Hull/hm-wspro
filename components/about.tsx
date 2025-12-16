@@ -37,12 +37,12 @@ export default function About() {
   const { t, tString } = useTranslation()
 
   return (
-    <motion.section id="about" className="py-20 relative" {...sectionMotionProps}>
+    <motion.section id="about" className="relative py-16 md:py-20" {...sectionMotionProps}>
        {/* Background elements */}
        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black pointer-events-none -z-10" />
        
       <motion.div
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 sm:px-6 lg:px-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -67,11 +67,12 @@ export default function About() {
           <div className="relative group">
             <div className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-green-500/30 via-purple-500/30 to-green-500/30 opacity-75 blur-lg group-hover:opacity-100 transition-all duration-500"></div>
             <div className="relative bg-black/60 backdrop-blur-sm rounded-2xl border border-green-500/20 overflow-hidden group-hover:border-green-500/40 transition-all duration-500">
-              <div className="relative h-[300px] md:h-[400px]">
+              <div className="relative h-64 sm:h-72 md:h-[360px]">
                 <Image 
                   src="/images/collage-images/1765377054225-019b08ab-a62a-7edb-864f-1003777d9f9b.png"
                   alt="Web Wizards - Building Your Digital Home"
                   fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -89,11 +90,12 @@ export default function About() {
           <div className="relative group">
             <div className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-purple-500/30 via-green-500/30 to-purple-500/30 opacity-75 blur-lg group-hover:opacity-100 transition-all duration-500"></div>
             <div className="relative bg-black/60 backdrop-blur-sm rounded-2xl border border-purple-500/20 overflow-hidden group-hover:border-purple-500/40 transition-all duration-500">
-              <div className="relative h-[300px] md:h-[400px]">
+              <div className="relative h-64 sm:h-72 md:h-[360px]">
                 <Image 
                   src="/images/collage-images/1765377082802-019b08ab-a62a-73ed-9c90-f892e5b393dc.png"
                   alt="Our Process - Planning, Designing, Delivering"
                   fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -121,7 +123,7 @@ export default function About() {
                         <RichText html={tString("about.intro")} className="text-lg text-muted-foreground leading-relaxed" />
                      </div>
                      
-                     <div className="flex gap-8">
+                     <div className="flex flex-wrap gap-6 md:gap-8">
                         <div className="flex flex-col items-center gap-2">
                            <CyberPortrait src="/images/Hristo.jpg" alt="Hristo" />
                            <span className="text-sm font-medium text-green-400">Hristo</span>
@@ -134,11 +136,12 @@ export default function About() {
                   </div>
 
                    {/* Illustration */}
-                   <div className="md:col-span-5 relative h-64 md:h-full min-h-[250px] rounded-xl overflow-hidden border border-white/10 group-hover:border-green-500/30 transition-colors duration-500">
+                   <div className="md:col-span-5 relative h-64 sm:h-72 md:h-full min-h-[260px] rounded-xl overflow-hidden border border-white/10 group-hover:border-green-500/30 transition-colors duration-500">
                       <Image 
                         src="/images/collage-images/cartoon-illustration-of-a-web-designer-thinking.jpg"
                         alt="Web Wizards"
                         fill
+                        sizes="(min-width: 1024px) 40vw, 100vw"
                         className="object-cover hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />

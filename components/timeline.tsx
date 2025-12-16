@@ -34,9 +34,9 @@ export default function Timeline() {
   const { t } = useTranslation()
 
   return (
-    <motion.section id="journey" className="py-20 bg-gradient-to-b from-muted to-background" {...sectionMotionProps}>
+    <motion.section id="journey" className="py-16 md:py-20 bg-gradient-to-b from-muted to-background" {...sectionMotionProps}>
       <motion.div
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 sm:px-6 lg:px-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
