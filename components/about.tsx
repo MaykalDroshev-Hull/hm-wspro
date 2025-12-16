@@ -115,15 +115,15 @@ export default function About() {
           <motion.div variants={childVariants} className="lg:col-span-3">
             <TranslationLoader>
               <BoxCard className="overflow-hidden">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center justify-items-center text-center">
                    {/* Text and Profiles */}
-                  <div className="md:col-span-7 flex flex-col gap-8">
-                     <div className="space-y-4">
-                        <RichText html={tString("about.introTitle")} className="text-2xl font-bold text-white" />
-                        <RichText html={tString("about.intro")} className="text-lg text-muted-foreground leading-relaxed" />
+                  <div className="md:col-span-7 flex flex-col gap-8 items-center text-center">
+                     <div className="space-y-4 w-full">
+                        <RichText html={tString("about.introTitle")} className="text-2xl font-bold text-white text-center" />
+                        <RichText html={tString("about.intro")} className="text-lg text-muted-foreground leading-relaxed text-center" />
                      </div>
                      
-                     <div className="flex flex-wrap gap-6 md:gap-8">
+                     <div className="flex flex-wrap gap-6 md:gap-8 justify-center">
                         <div className="flex flex-col items-center gap-2">
                            <CyberPortrait src="/images/Hristo.jpg" alt="Hristo" />
                            <span className="text-sm font-medium text-green-400">Hristo</span>
@@ -160,7 +160,7 @@ export default function About() {
           <motion.div variants={childVariants}>
             <TranslationLoader>
               <BoxCard>
-                <RichText html={tString("about.learning")} className="text-lg leading-relaxed font-normal text-gray-300" />
+                <RichText html={tString("about.learning")} className="text-lg leading-relaxed font-normal text-gray-300 text-center" />
               </BoxCard>
             </TranslationLoader>
           </motion.div>
@@ -168,7 +168,7 @@ export default function About() {
           <motion.div variants={childVariants}>
             <TranslationLoader>
               <BoxCard>
-                <RichText html={tString("about.specialization")} className="text-lg leading-relaxed font-normal text-gray-300" />
+                <RichText html={tString("about.specialization")} className="text-lg leading-relaxed font-normal text-gray-300 text-center" />
               </BoxCard>
             </TranslationLoader>
           </motion.div>
@@ -176,7 +176,7 @@ export default function About() {
           <motion.div variants={childVariants}>
             <TranslationLoader>
               <BoxCard>
-                <RichText html={tString("about.hobbies")} className="text-lg leading-relaxed font-normal text-gray-300" />
+                <RichText html={tString("about.hobbies")} className="text-lg leading-relaxed font-normal text-gray-300 text-center" />
               </BoxCard>
             </TranslationLoader>
           </motion.div>
