@@ -46,9 +46,9 @@ export default function Navbar() {
       </div>
 
       {/* Mobile: stacked layout with language switcher on top-right */}
-      <div className="md:hidden flex flex-col items-center gap-2">
+      <div className="md:hidden relative flex flex-col items-center gap-2 w-full pt-8">
         {/* Language switcher - top right corner on mobile */}
-        <div className="absolute top-0 right-4">
+        <div className="absolute top-0 right-4 z-[60]">
           <LanguageSwitcher />
         </div>
         
