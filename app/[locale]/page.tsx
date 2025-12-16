@@ -70,7 +70,12 @@ export default async function LocalePage({ params }: LocalePageProps) {
       <PerformanceOptimizer locale={locale} />
       <div className="min-h-screen bg-background text-foreground" lang={locale} dir={getLocaleInfo(locale).direction}>
         <Navbar />
-        <main id="main-content" role="main" aria-label={locale === 'en' ? 'Main content' : 'Основно съдържание'}>
+        <main
+          id="main-content"
+          role="main"
+          aria-label={locale === 'en' ? 'Main content' : 'Основно съдържание'}
+          className="mt-16 md:mt-20"
+        >
           <Hero />
           <About />
           <Skills />
