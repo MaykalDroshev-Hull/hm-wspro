@@ -10,9 +10,8 @@ const easeOut = "easeOut" as const
 
 const sectionMotionProps = {
   initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
+  animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6, ease: easeOut },
-  viewport: { once: true, amount: 0.2, margin: "0px 0px -100px 0px" },
 }
 
 const containerVariants = {
@@ -45,8 +44,7 @@ export default function About() {
         className="container mx-auto px-4 sm:px-6 lg:px-8"
         variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0 }}
+        animate="visible"
       >
         <motion.div variants={childVariants}>
           <TranslationLoader>
@@ -115,7 +113,7 @@ export default function About() {
           <motion.div variants={childVariants} className="lg:col-span-3">
             <TranslationLoader>
               <BoxCard className="overflow-hidden">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center justify-items-center text-center">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start justify-items-center text-center">
                    {/* Text and Profiles */}
                   <div className="md:col-span-7 flex flex-col gap-8 items-center text-center">
                      <div className="space-y-4 w-full">
