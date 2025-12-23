@@ -103,6 +103,15 @@ function ProjectsContent() {
     },
     {
       id: 6,
+      titleKey: "projects.naidenovart.title",
+      subtitleKey: "projects.naidenovart.subtitle",
+      descriptionKey: "projects.naidenovart.description",
+      image: "/images/naidenovart-desktop.png",
+      tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "Responsive Design", "Multi-language"],
+      detailsKey: "projects.naidenovart.details",
+    },
+    {
+      id: 7,
       titleKey: "projects.comingSoon.title",
       subtitleKey: "projects.comingSoon.subtitle",
       descriptionKey: "projects.comingSoon.description",

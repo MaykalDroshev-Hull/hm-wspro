@@ -147,6 +147,21 @@
         "Responsive design optimized for all devices"
       ]
     },
+    "naidenovart": {
+      "title": "NaidenovART",
+      "subtitle": "Art Portfolio",
+      "description": "Professional art portfolio website showcasing custom artwork on canvas, street walls, textiles, vehicles, helmets, and various objects.",
+      "details": [
+        "Modern art portfolio website with immersive visual design",
+        "Comprehensive gallery featuring paintings, street art, and custom projects",
+        "Custom artwork services for cars, helmets, laptops, and other objects",
+        "Street art initiatives with social messages and community impact",
+        "Clothing line with unique artistic designs",
+        "Multi-language support (Bulgarian/English) with seamless language switching",
+        "Responsive design optimized for showcasing high-quality artwork",
+        "Social media integration for Instagram and Facebook"
+      ]
+    },
     "comingSoon": {
       "title": "Coming Soon",
       "subtitle": "New Project",
@@ -215,7 +230,8 @@
       "viki": "15-viki-bg",
       "aseam": "ASEA-M",
       "pizza": "Pizza Stop",
-      "kasameri": "Kasameri EOOD"
+      "kasameri": "Kasameri EOOD",
+      "naidenovart": "NaidenovART"
     }
   }
 }
