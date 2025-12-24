@@ -180,6 +180,15 @@ function TestimonialsContent() {
       avatar: "/images/aseamIcon.ico",
       rating: 5,
     },
+    {
+      name: tString("testimonials.monika.name"),
+      role: tString("testimonials.monika.role"),
+      company: tString("testimonials.monika.company"),
+      content: tString("testimonials.monika.content"),
+      avatar: "/images/kasameri-logo.svg",
+      rating: 5,
+    },
+    
   ]
 
   const testimonials = [...translatedTestimonials]

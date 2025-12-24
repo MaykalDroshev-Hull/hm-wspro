@@ -136,6 +136,8 @@ export default function Footer() {
                 { href: "https://www.aseam-detailing.com/", name: "Aseam Detailing" },
                 { href: "https://pizza-stop-bg.vercel.app/", name: "Pizza Stop" },
                 { href: "https://kasameri-bg.vercel.app/", name: "Kasameri" },
+                { href: "https://www.pgitu-lovech.com/", name: "PGITU" },
+                { href: "https://www.naidenovart.com/", name: "NaidenovART" },
               ].map((project) => (
                 <a
                   key={project.href}
