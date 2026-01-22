@@ -90,6 +90,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     telephone: "",
+    message: "",
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -129,7 +130,7 @@ export default function Contact() {
         )
         
         // Reset form
-        setFormData({ name: "", telephone: "" })
+        setFormData({ name: "", telephone: "", message: "" })
       } else {
         throw new Error('Failed to send message')
       }
@@ -216,6 +217,22 @@ export default function Contact() {
                         required
                         disabled={isSubmitting}
                         className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                      />
+                    </motion.div>
+
+                    <motion.div variants={childVariants} className="mb-4">
+                      <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-1">
+                        {t("contact.form.message")}
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={5}
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-2 bg-muted/50 border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-none"
                       />
                     </motion.div>
 

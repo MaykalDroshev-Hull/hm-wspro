@@ -7,7 +7,7 @@ export const revalidate = 0
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, telephone } = await request.json()
+    const { name, telephone, message, locale } = await request.json()
 
     // Create transporter
     const transporter = nodemailer.createTransport({
@@ -24,8 +24,12 @@ export async function POST(request: NextRequest) {
 
       Име: ${name}
       Телефон: ${telephone}
+      
+      Съобщение:
+      ${message}
 
       Време на заявката: ${new Date().toLocaleString('bg-BG')}
+      Език: ${locale === 'bg' ? 'Български' : 'English'}
     `
 
     // Send email to company

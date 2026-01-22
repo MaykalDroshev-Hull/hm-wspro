@@ -213,12 +213,6 @@
       "role": "Business Owner",
       "company": "ASEA-M Detailing Studio",
       "content": "I am extremely satisfied! Communication with H&M Website Provisioning is super easy, constructive and the results show it! I strongly recommend and keep going forward guys!"
-    },
-    "monika": {
-      "name": "Monika",
-      "role": "Owner",
-      "company": "Kasameri EOOD",
-      "content": "Great team! Precise, responsible and very ambitious. Their work is at a high level, I recommend with both hands!"
     }
   },
   "contact": {
@@ -226,7 +220,10 @@
     "intro": "Have a great idea? Let's discuss it and make it a reality.",
     "form": {
       "name": "Name",
+      "email": "Email",
       "telephone": "Telephone",
+      "company": "Company (Optional)",
+      "message": "Message",
       "submit": "Send"
     }
   },
