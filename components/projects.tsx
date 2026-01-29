@@ -112,6 +112,15 @@ function ProjectsContent() {
     },
     {
       id: 7,
+      titleKey: "projects.transgroup.title",
+      subtitleKey: "projects.transgroup.subtitle",
+      descriptionKey: "projects.transgroup.description",
+      image: "/images/transgroup-vvt.png",
+      tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "Responsive Design", "Multi-language"],
+      detailsKey: "projects.transgroup.details",
+    },
+    {
+      id: 8,
       titleKey: "projects.comingSoon.title",
       subtitleKey: "projects.comingSoon.subtitle",
       descriptionKey: "projects.comingSoon.description",

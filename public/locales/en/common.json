@@ -162,6 +162,21 @@
         "Social media integration for Instagram and Facebook"
       ]
     },
+    "transgroup": {
+      "title": "TransGroup VVT",
+      "subtitle": "Transport & Logistics",
+      "description": "Portfolio website for freight and expedition company transporting goods around Europe. International transport, forwarding, and logistics solutions.",
+      "details": [
+        "Professional transport and logistics company website",
+        "Multi-language support (Bulgarian, English, Polish, Greek) with seamless language switching",
+        "Services showcase including refrigerated transport, warehousing, and groupage",
+        "Fleet and base information with interactive gallery",
+        "Contact form with inquiry system for transport requests",
+        "GPS tracking and 24/7 TIR parking information",
+        "ADR and pharmaceutical transport licenses showcase",
+        "Responsive design optimized for all devices"
+      ]
+    },
     "comingSoon": {
       "title": "Coming Soon",
       "subtitle": "New Project",
@@ -213,6 +228,12 @@
       "role": "Business Owner",
       "company": "ASEA-M Detailing Studio",
       "content": "I am extremely satisfied! Communication with H&M Website Provisioning is super easy, constructive and the results show it! I strongly recommend and keep going forward guys!"
+    },
+    "monika": {
+      "name": "Monika",
+      "role": "Business Owner",
+      "company": "Kasameri EOOD",
+      "content": "Excellent work! The website perfectly represents our agricultural business and has helped us reach more customers. Professional service and great communication throughout the project."
     }
   },
   "contact": {

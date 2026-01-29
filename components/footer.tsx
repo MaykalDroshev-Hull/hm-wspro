@@ -138,6 +138,7 @@ export default function Footer() {
                 { href: "https://kasameri-bg.vercel.app/", name: "Kasameri" },
                 { href: "https://www.pgitu-lovech.com/", name: "PGITU" },
                 { href: "https://www.naidenovart.com/", name: "NaidenovART" },
+                { href: "https://www.transgroup-vvt.com/", name: "TransGroup VVT" },
               ].map((project) => (
                 <a
                   key={project.href}
