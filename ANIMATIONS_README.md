@@ -359,7 +359,3 @@ export function CustomSection() {
 - `framer-motion` - Animation library
 - `react` - React framework (required)
 
-## 📝 License
-
-This code is extracted from the H&M Website Provisioning project and can be used freely in your projects.
-
