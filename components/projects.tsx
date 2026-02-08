@@ -3,6 +3,7 @@ import Image from "next/image"
 import { useTranslation } from "@/contexts/TranslationContext"
 import { TranslationLoader, useTranslationReady } from "./translation-loader"
 import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
 
 interface Project {
   id: number
@@ -12,6 +13,7 @@ interface Project {
   image: string
   tags: string[]
   detailsKey: string
+  isPremium?: boolean
 }
 
 const easeOut = "easeOut" as const
@@ -56,6 +58,16 @@ function ProjectsContent() {
   const {} = useTranslationReady()
 
   const projects = [
+    {
+      id: 0,
+      titleKey: "projects.hmcommerce.title",
+      subtitleKey: "projects.hmcommerce.subtitle",
+      descriptionKey: "projects.hmcommerce.description",
+      image: "/images/e-commerce.png",
+      tags: ["TypeScript", "Tailwind CSS", "E-commerce", "Easy Setup", "Bulgaria"],
+      detailsKey: "projects.hmcommerce.details",
+      isPremium: true,
+    },
     {
       id: 1,
       titleKey: "projects.aseam.title",
@@ -121,6 +133,15 @@ function ProjectsContent() {
     },
     {
       id: 8,
+      titleKey: "projects.abstractApartment.title",
+      subtitleKey: "projects.abstractApartment.subtitle",
+      descriptionKey: "projects.abstractApartment.description",
+      image: "/images/abstract-apartment.png",
+      tags: ["TypeScript", "Tailwind CSS", "Vacation Rental", "Multi-language", "Greece"],
+      detailsKey: "projects.abstractApartment.details",
+    },
+    {
+      id: 9,
       titleKey: "projects.comingSoon.title",
       subtitleKey: "projects.comingSoon.subtitle",
       descriptionKey: "projects.comingSoon.description",
@@ -144,7 +165,11 @@ function ProjectsContent() {
           className="grid md:grid-cols-1 lg:grid-cols-1 gap-6 sm:gap-8"
         >
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            project.isPremium ? (
+              <PremiumProjectCard key={project.id} project={project} />
+            ) : (
+              <ProjectCard key={project.id} project={project} />
+            )
           ))}
         </motion.div>
       </div>
@@ -237,6 +262,151 @@ function ProjectCard({ project }: { project: Project }) {
             ))}
           </ul>
         ) : null}
+      </div>
+    </motion.div>
+  )
+}
+
+function PremiumProjectCard({ project }: { project: Project }) {
+  const { t, tString, locale } = useTranslation()
+  const description = t(project.descriptionKey)
+
+  // Get the details array from translations
+  const { translations } = useTranslation()
+  let detailsArray: string[] = []
+  
+  const keys = project.detailsKey.split('.')
+  let value: unknown = translations
+  
+  for (const key of keys) {
+    if (value && typeof value === 'object' && value !== null && key in value) {
+      value = (value as Record<string, unknown>)[key]
+    } else {
+      value = null
+      break
+    }
+  }
+  
+  if (Array.isArray(value)) {
+    detailsArray = value
+  } else {
+    detailsArray = []
+    for (let i = 0; i < 10; i++) {
+      const itemKey = `${project.detailsKey}.${i}`
+      const item = tString(itemKey)
+      if (item && item !== itemKey) {
+        detailsArray.push(item)
+      } else {
+        break
+      }
+    }
+  }
+
+  const detailPreview = detailsArray.slice(0, 3)
+
+  function smoothScroll(target: string) {
+    const element = document.querySelector(target)
+    if (!element) {
+      return
+    }
+
+    const lenisWindow = window as typeof window & {
+      lenis?: { scrollTo: (destination: Element | string, options?: { offset?: number }) => void }
+    }
+
+    const scrollMarginTop = parseInt(window.getComputedStyle(element).scrollMarginTop || "0", 10) || 0
+
+    if (lenisWindow.lenis) {
+      lenisWindow.lenis.scrollTo(element, { offset: -scrollMarginTop })
+      return
+    }
+
+    element.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  const handleEnquireNow = () => {
+    // Set message in sessionStorage for contact form to read
+    const enquiryMessage = locale === 'bg' 
+      ? 'Интересувам се да науча повече за HM-Commerce'
+      : 'I am interested in learning more about HM-Commerce'
+    
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('enquiryMessage', enquiryMessage)
+      sessionStorage.setItem('enquiryType', 'hmcommerce')
+      
+      // Scroll to contact form
+      smoothScroll('#contact')
+      
+      // Trigger a custom event to notify contact form
+      window.dispatchEvent(new CustomEvent('enquiryMessageSet', { detail: { message: enquiryMessage } }))
+    }
+  }
+
+  return (
+    <motion.div
+      variants={childVariants}
+      className="group relative overflow-hidden rounded-2xl border-2 border-transparent bg-gradient-to-r from-purple-500/20 via-cyan-500/20 to-purple-500/20 p-[2px] shadow-2xl transition-all duration-500 hover:shadow-purple-500/50"
+    >
+      <div className="relative h-full w-full rounded-2xl bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-sm">
+        {/* Glow effect */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-cyan-600 to-purple-600 rounded-2xl opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-30" />
+        
+        <div className="relative overflow-hidden">
+          <div className="relative aspect-[16/9] w-full">
+            <Image
+              src={project.image || "/placeholder.svg"}
+              alt={tString(project.titleKey)}
+              fill
+              sizes="(min-width: 1024px) 900px, 100vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90" />
+          </div>
+        </div>
+
+        <div className="p-5 md:p-6 space-y-4">
+          <div className="flex flex-col gap-1">
+            <h3 className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+              {t(project.titleKey)}
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              {t(project.subtitleKey)}
+            </p>
+          </div>
+
+          <p className="text-sm text-gray-300 line-clamp-3">{description}</p>
+
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag: string) => (
+              <span
+                key={tag}
+                className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs text-purple-200 backdrop-blur-sm"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {detailPreview.length > 0 ? (
+            <ul className="space-y-1 text-xs text-gray-400 list-disc list-inside">
+              {detailPreview.map((detail, index) => (
+                <li key={index} className="line-clamp-1">{detail}</li>
+              ))}
+            </ul>
+          ) : null}
+
+          {/* Enquire Now Button */}
+          <div className="mt-4 relative z-10">
+            <button
+              onClick={handleEnquireNow}
+              type="button"
+              className="group w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-400 hover:to-cyan-400 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              {locale === 'bg' ? 'Запитване сега' : 'Enquire Now'}
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
+        </div>
       </div>
     </motion.div>
   )

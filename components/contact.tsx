@@ -2,7 +2,7 @@
  
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Send } from "lucide-react"
 import { useTranslation } from "@/contexts/TranslationContext"
 import { toast } from "sonner"
@@ -92,6 +92,61 @@ export default function Contact() {
     telephone: "",
     message: "",
   })
+  const messageFilledRef = useRef(false)
+
+  // Pre-fill message from sessionStorage if enquiry was made
+  useEffect(() => {
+    const checkAndFillMessage = () => {
+      if (messageFilledRef.current) return false
+      
+      if (typeof window !== 'undefined') {
+        const enquiryMessage = sessionStorage.getItem('enquiryMessage')
+        const enquiryType = sessionStorage.getItem('enquiryType')
+        
+        if (enquiryMessage && enquiryType === 'hmcommerce') {
+          setFormData((prev) => ({ ...prev, message: enquiryMessage }))
+          messageFilledRef.current = true
+          // Clear sessionStorage after reading
+          sessionStorage.removeItem('enquiryMessage')
+          sessionStorage.removeItem('enquiryType')
+          return true
+        }
+      }
+      return false
+    }
+
+    // Check on mount
+    checkAndFillMessage()
+
+    // Listen for custom event when enquiry button is clicked
+    const handleEnquiryMessage = (event: CustomEvent) => {
+      if (event.detail?.message && !messageFilledRef.current) {
+        setFormData((prev) => ({ ...prev, message: event.detail.message }))
+        messageFilledRef.current = true
+        if (typeof window !== 'undefined') {
+          sessionStorage.removeItem('enquiryMessage')
+          sessionStorage.removeItem('enquiryType')
+        }
+      }
+    }
+
+    window.addEventListener('enquiryMessageSet', handleEnquiryMessage as EventListener)
+
+    // Check periodically for a short time after mount (in case user navigates from projects)
+    let checkCount = 0
+    const maxChecks = 10 // Check for 5 seconds (10 * 500ms)
+    const interval = setInterval(() => {
+      checkCount++
+      if (checkAndFillMessage() || checkCount >= maxChecks) {
+        clearInterval(interval)
+      }
+    }, 500)
+
+    return () => {
+      window.removeEventListener('enquiryMessageSet', handleEnquiryMessage as EventListener)
+      clearInterval(interval)
+    }
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target

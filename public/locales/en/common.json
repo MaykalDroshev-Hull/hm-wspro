@@ -177,6 +177,37 @@
         "Responsive design optimized for all devices"
       ]
     },
+    "hmcommerce": {
+      "title": "HM-Commerce",
+      "subtitle": "E-commerce Platform",
+      "description": "Easy-to-setup e-commerce platform designed for selling in Bulgaria. Built with TypeScript and Tailwind CSS for fast, modern online stores.",
+      "details": [
+        "E-commerce platform with easy setup and configuration",
+        "Optimized for selling in Bulgaria with local payment integration",
+        "Built with TypeScript and Tailwind CSS for modern, maintainable code",
+        "Fast and responsive design for all devices",
+        "Product management and inventory system",
+        "Order processing and customer management",
+        "Secure payment processing",
+        "Admin dashboard for store management"
+      ]
+    },
+    "abstractApartment": {
+      "title": "Abstract Apartment",
+      "subtitle": "Vacation Rental Website",
+      "description": "Modern vacation rental website for two apartments in Paralia Ofriniou, Greece. Showcasing luxury accommodations with booking functionality.",
+      "details": [
+        "Professional vacation rental website for two apartments",
+        "Located in Paralia Ofriniou, Greece",
+        "Built with TypeScript and Tailwind CSS",
+        "Multi-language support (Bulgarian, English, Greek)",
+        "Property showcase with amenities and capacity information",
+        "Booking and reservation system",
+        "Interactive map and location details",
+        "Responsive design optimized for all devices",
+        "Photo gallery and virtual tour integration"
+      ]
+    },
     "comingSoon": {
       "title": "Coming Soon",
       "subtitle": "New Project",
@@ -234,6 +265,18 @@
       "role": "Business Owner",
       "company": "Kasameri EOOD",
       "content": "Excellent work! The website perfectly represents our agricultural business and has helped us reach more customers. Professional service and great communication throughout the project."
+    },
+    "plamen": {
+      "name": "Plamen Naidenov",
+      "role": "Owner",
+      "company": "NaidenovART",
+      "content": "Attitude, quality, professionalism! Extremely satisfied!"
+    },
+    "nikola": {
+      "name": "Nikola Ivanov",
+      "role": "Owner",
+      "company": "Abstract Apartment",
+      "content": "From the first contact, we felt professionalism, desire, and attention to every detail. They didn't just make a website – they created a platform that looks great, works perfectly, and makes things as easy as possible for our clients. Everything was clear, fast, and with ideas that exceeded our expectations. You can tell they put their heart into what they do, and the result speaks for itself. Huge thanks! 🙌 We recommend them with full confidence to anyone who wants not just a website, but real quality and attitude. 🚀"
     }
   },
   "contact": {

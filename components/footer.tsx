@@ -132,6 +132,8 @@ export default function Footer() {
             </TranslationLoader>
             <nav className="flex flex-col space-y-3">
               {[
+                { href: "https://www.parfumcho.com/", name: "HM-Commerce" },
+                { href: "https://www.abstract-apartments.com/", name: "Abstract Apartment" },
                 { href: "https://15-viki-bg.vercel.app/", name: "15 Viki" },
                 { href: "https://www.aseam-detailing.com/", name: "Aseam Detailing" },
                 { href: "https://pizza-stop-bg.vercel.app/", name: "Pizza Stop" },

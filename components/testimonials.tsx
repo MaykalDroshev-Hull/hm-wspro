@@ -188,6 +188,22 @@ function TestimonialsContent() {
       avatar: "/images/kasameri-logo.svg",
       rating: 5,
     },
+    {
+      name: tString("testimonials.plamen.name"),
+      role: tString("testimonials.plamen.role"),
+      company: tString("testimonials.plamen.company"),
+      content: tString("testimonials.plamen.content"),
+      avatar: "/images/naidenov-art-icon.png",
+      rating: 5,
+    },
+    {
+      name: tString("testimonials.nikola.name"),
+      role: tString("testimonials.nikola.role"),
+      company: tString("testimonials.nikola.company"),
+      content: tString("testimonials.nikola.content"),
+      avatar: "/images/abstract-apartment-icon.ico",
+      rating: 5,
+    },
     
   ]
 
